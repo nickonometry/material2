@@ -26,6 +26,7 @@ System.config({
       'node:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
 
     '@angular/material': 'dist/bundles/material.umd.js',
+    '@angular/flex-layout' : 'node:@angular/flex-layout/bundles/flex-layout.umd.js',
     '@angular/cdk': 'dist/bundles/cdk.umd.js'
   },
   packages: {

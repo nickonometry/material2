@@ -1,6 +1,7 @@
-import {Component, ViewChild, ViewEncapsulation} from '@angular/core';
+import {Component, ViewChild, ViewEncapsulation, OnInit} from '@angular/core';
 import {FormControl, NgModel} from '@angular/forms';
 import 'rxjs/add/operator/startWith';
+import { PageTitleService } from '../services/pagetitle.service';
 
 @Component({
   moduleId: module.id,
@@ -9,7 +10,7 @@ import 'rxjs/add/operator/startWith';
   styleUrls: ['autocomplete-demo.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class AutocompleteDemo {
+export class AutocompleteDemo implements OnInit {
   stateCtrl: FormControl;
   currentState = '';
   topHeightCtrl = new FormControl(0);
@@ -20,6 +21,15 @@ export class AutocompleteDemo {
   tdDisabled = false;
 
   @ViewChild(NgModel) modelDir: NgModel;
+
+  screenshots: Object[] = [
+    { name: 'Porter', human: 'Kara' },
+    { name: 'Mal', human: 'Jeremy' },
+    { name: 'Koby', human: 'Igor' },
+    { name: 'Razzle', human: 'Ward' },
+    { name: 'Molly', human: 'Rob' },
+    { name: 'Husi', human: 'Matias' },
+  ];
 
   states = [
     {code: 'AL', name: 'Alabama'},
@@ -74,7 +84,7 @@ export class AutocompleteDemo {
     {code: 'WY', name: 'Wyoming'},
   ];
 
-  constructor() {
+  constructor(private pageTitleService: PageTitleService) {
     this.tdStates = this.states;
     this.stateCtrl = new FormControl({code: 'CA', name: 'California'});
     this.reactiveStates = this.stateCtrl.valueChanges
@@ -82,6 +92,10 @@ export class AutocompleteDemo {
         .map(val => this.displayFn(val))
         .map(name => this.filterStates(name));
   }
+
+    ngOnInit() {
+        this.pageTitleService.setTitle('Autocomplete');
+    }
 
   displayFn(value: any): string {
     return value && typeof value === 'object' ? value.name : value;

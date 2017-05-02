@@ -4,7 +4,7 @@
 
   .mat-card {
     margin: 0 16px 16px 0;
-    width: 350px;
+    
   }
 
   img {
@@ -20,3 +20,12 @@
     flex-direction: column;
   }
 }
+
+.containerX {
+  box-sizing: content-box !important;
+}
+
+.colored {
+  height:auto;
+}
+

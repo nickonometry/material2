@@ -43,6 +43,7 @@ import {PlatformDemo} from './platform/platform-demo';
 import {AutocompleteDemo} from './autocomplete/autocomplete-demo';
 import {InputDemo} from './input/input-demo';
 import {StyleDemo} from './style/style-demo';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 
 @NgModule({
@@ -51,6 +52,7 @@ import {StyleDemo} from './style/style-demo';
     BrowserAnimationsModule,
     FormsModule,
     HttpModule,
+    FlexLayoutModule,
     ReactiveFormsModule,
     RouterModule.forRoot(DEMO_APP_ROUTES),
     MaterialModule,

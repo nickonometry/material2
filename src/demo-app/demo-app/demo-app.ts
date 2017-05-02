@@ -1,4 +1,5 @@
-import {Component, ViewEncapsulation, ElementRef} from '@angular/core';
+import {Component, ViewEncapsulation, ElementRef, OnInit} from '@angular/core';
+import { PageTitleService } from '../services/pagetitle.service';
 
 
 @Component({
@@ -16,8 +17,10 @@ export class Home {}
   templateUrl: 'demo-app.html',
   styleUrls: ['demo-app.css'],
   encapsulation: ViewEncapsulation.None,
+  providers: [ PageTitleService ]
 })
-export class DemoApp {
+export class DemoApp implements OnInit {
+  header: string;
   navItems = [
     {name: 'Autocomplete', route: 'autocomplete'},
     {name: 'Button', route: 'button'},
@@ -51,9 +54,15 @@ export class DemoApp {
     {name: 'Style', route: 'style'}
   ];
 
-  constructor(private _element: ElementRef) {
-
+  constructor(private _element: ElementRef, private pageTitleService: PageTitleService) {
   }
+  
+  ngOnInit() {
+
+        this.pageTitleService.title.subscribe((val: string) => {
+            this.header = val;
+        });
+    }
 
   toggleFullscreen() {
     let elem = this._element.nativeElement.querySelector('.demo-content');
