@@ -1,103 +1,64 @@
 <div class="demo-card-container">
-  <ul class="toc">
-    <div class="tocHeader">Additional Resources</div>
-    <li><a href="https://material.io/guidelines/components/cards.html" target="_blank">Material Guidelines</a></li>
-    <li><a href="https://tylertechnologies.atlassian.net/wiki/spaces/UP/pages/89952420/Card" target="_blank">UX Patterns</a></li>
-  </ul>
+  <md-card>
+    Hello
+  </md-card>
 
-  <div class="containerX">
-    <div [fxLayout]="direction" style="cursor: pointer;" fxLayoutAlign="space-between stretch" fxLayout.xs="column" fxLayout.sm="column"
-      fxLayoutGap="50px" fxLayoutGap.sm="0px" fxLayoutGap.xs="0px">
-      <div fxFlex="30">
-        <h1>Guidelines</h1>
-        <p>A card is a sheet of material that serves as an entry point to more detailed information.</p>
-        <br />
-        <p>Cards may contain a photo, text, and a link about a single subject. They may display content containing elements
-          of varying size, such as photos with captions of variable length.</p>
+  <md-card>
+    <md-card-title-group>
+      <md-card-title>Card with title</md-card-title>
+      <md-card-subtitle>Subtitle</md-card-subtitle>
+      <img md-card-md-image>
+    </md-card-title-group>
+  </md-card>
 
-        <p>A card collection is a layout of cards on the same plane.</p>
+  <md-card>
+    <md-card-subtitle>Subtitle</md-card-subtitle>
+    <md-card-title>Card with title and footer</md-card-title>
+    <md-card-content>
+      <p>This is supporting text.</p>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
+        aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+        Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+        sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    </md-card-content>
+    <md-card-actions>
+      <button md-button>LIKE</button>
+      <button md-button>SHARE</button>
+    </md-card-actions>
+    <md-card-footer>
+      <md-progress-bar mode="indeterminate"></md-progress-bar>
+    </md-card-footer>
+  </md-card>
 
-      </div>
-      <div fxFlex="35">
-        <h1>Screenshots</h1>
-        <md-grid-list cols="3" rowHeight="200px">
-          <md-grid-tile *ngFor="let screenshot of screenshots">
-            <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
-            <md-grid-tile-footer>
-              <h3 md-line>{{screenshot.name}}</h3>
-              <span md-line>Human: {{screenshot.human}}</span>
-              <md-icon>star_border</md-icon>
-            </md-grid-tile-footer>
-          </md-grid-tile>
-        </md-grid-list>
+  <md-card>
+    <img md-card-image src="https://material.angularjs.org/latest/img/washedout.png">
+    <md-card-title>Content Title</md-card-title>
+    <md-card-content>
+      <p>Here is some content</p>
+    </md-card-content>
+    <md-card-actions align="end">
+      <button md-button>LIKE</button>
+      <button md-button>SHARE</button>
+    </md-card-actions>
+  </md-card>
 
+  <md-card>
+    <md-card-header>
+      <img md-card-avatar>
+      <md-card-title>Header title</md-card-title>
+      <md-card-subtitle>Header subtitle</md-card-subtitle>
+    </md-card-header>
+    <img md-card-image src="https://material.angularjs.org/latest/img/washedout.png">
+    <md-card-content>
+      <p>Here is some content</p>
+    </md-card-content>
+  </md-card>
 
-      </div>
-      <div fxFlex="35">
-        <h1>Examples</h1>
-        <md-card>
-          Hello
-        </md-card>
-
-        <md-card>
-          <md-card-title-group>
-            <md-card-title>Card with title</md-card-title>
-            <md-card-subtitle>Subtitle</md-card-subtitle>
-            <img md-card-md-image>
-          </md-card-title-group>
-        </md-card>
-
-        <md-card>
-          <md-card-subtitle>Subtitle</md-card-subtitle>
-          <md-card-title>Card with title and footer</md-card-title>
-          <md-card-content>
-            <p>This is supporting text.</p>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-              consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-              Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-          </md-card-content>
-          <md-card-actions>
-            <button md-button>LIKE</button>
-            <button md-button>SHARE</button>
-          </md-card-actions>
-          <md-card-footer>
-            <md-progress-bar mode="indeterminate"></md-progress-bar>
-          </md-card-footer>
-        </md-card>
-
-        <md-card>
-          <img md-card-image src="https://material.angularjs.org/latest/img/washedout.png">
-          <md-card-title>Content Title</md-card-title>
-          <md-card-content>
-            <p>Here is some content</p>
-          </md-card-content>
-          <md-card-actions align="end">
-            <button md-button>LIKE</button>
-            <button md-button>SHARE</button>
-          </md-card-actions>
-        </md-card>
-
-        <md-card>
-          <md-card-header>
-            <img md-card-avatar>
-            <md-card-title>Header title</md-card-title>
-            <md-card-subtitle>Header subtitle</md-card-subtitle>
-          </md-card-header>
-          <img md-card-image src="https://material.angularjs.org/latest/img/washedout.png">
-          <md-card-content>
-            <p>Here is some content</p>
-          </md-card-content>
-        </md-card>
-
-        <md-card class="demo-card-blue mat-card-flat">
-          <md-card-title>Easily customizable</md-card-title>
-          <md-card-actions>
-            <button md-button>First</button>
-            <button md-button>Second</button>
-          </md-card-actions>
-        </md-card>
-      </div>
-    </div>
-  </div>
+  <md-card class="demo-card-blue mat-card-flat">
+    <md-card-title>Easily customizable</md-card-title>
+    <md-card-actions>
+      <button md-button>First</button>
+      <button md-button>Second</button>
+    </md-card-actions>
+  </md-card>
 </div>

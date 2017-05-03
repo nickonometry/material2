@@ -45,6 +45,10 @@ import {InputDemo} from './input/input-demo';
 import {StyleDemo} from './style/style-demo';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
+import {CardParent} from './card/card-parent';
+import {AutocompleteParent} from './autocomplete/autocomplete-parent';
+import {ButtonParent} from './button/button-parent';
+
 
 @NgModule({
   imports: [
@@ -60,10 +64,13 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   ],
   declarations: [
     AutocompleteDemo,
+    AutocompleteParent,
     BaselineDemo,
     ButtonDemo,
+    ButtonParent,
     ButtonToggleDemo,
     CardDemo,
+    CardParent,
     ChipsDemo,
     CheckboxDemo,
     DemoApp,

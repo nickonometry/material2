@@ -1,0 +1,40 @@
+<div class="demo-card-container">
+  <ul class="toc">
+    <div class="tocHeader">Additional Resources</div>
+    <li><a href="https://material.io/guidelines/components/cards.html" target="_blank">Material Guidelines</a></li>
+    <li><a href="https://tylertechnologies.atlassian.net/wiki/spaces/UP/pages/89952420/Card" target="_blank">UX Patterns</a></li>
+  </ul>
+
+  <div class="containerX">
+    <div [fxLayout]="direction" fxLayoutAlign="space-between stretch" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="50px"
+      fxLayoutGap.sm="0px" fxLayoutGap.xs="0px">
+      <div fxFlex="30">
+        <h1>Guidelines</h1>
+        <p>A card is a sheet of material that serves as an entry point to more detailed information.</p>
+
+        <p>Cards may contain a photo, text, and a link about a single subject. They may display content containing elements
+          of varying size, such as photos with captions of variable length.</p>
+
+        <p>A card collection is a layout of cards on the same plane.</p>
+      </div>
+
+      <div fxFlex="35">
+        <h1>Screenshots</h1>
+        <md-grid-list cols="3" rowHeight="200px">
+          <md-grid-tile *ngFor="let screenshot of screenshots">
+            <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
+            <md-grid-tile-footer>
+              <h3 md-line>{{screenshot.name}}</h3>
+            </md-grid-tile-footer>
+          </md-grid-tile>
+        </md-grid-list>
+
+
+      </div>
+      <div fxFlex="35">
+        <h1>Examples</h1>
+        <card-demo></card-demo>
+      </div>
+    </div>
+  </div>
+</div>

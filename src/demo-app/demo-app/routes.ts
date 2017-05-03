@@ -33,11 +33,16 @@ import {AutocompleteDemo} from '../autocomplete/autocomplete-demo';
 import {InputDemo} from '../input/input-demo';
 import {StyleDemo} from '../style/style-demo';
 
+
+import {AutocompleteParent} from '../autocomplete/autocomplete-parent';
+import {CardParent} from '../card/card-parent';
+import {ButtonParent} from '../button/button-parent';
+
 export const DEMO_APP_ROUTES: Routes = [
   {path: '', component: Home},
-  {path: 'autocomplete', component: AutocompleteDemo},
-  {path: 'button', component: ButtonDemo},
-  {path: 'card', component: CardDemo},
+  {path: 'autocomplete', component: AutocompleteParent},
+  {path: 'button', component: ButtonParent},
+  {path: 'card', component: CardParent},
   {path: 'chips', component: ChipsDemo},
   {path: 'radio', component: RadioDemo},
   {path: 'select', component: SelectDemo},
