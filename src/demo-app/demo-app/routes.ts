@@ -38,6 +38,13 @@ import {CardParent} from '../card/card-parent';
 import {ButtonParent} from '../button/button-parent';
 import {ChipsParent} from '../chips/chips-parent';
 import {IconParent} from '../icon/icon-parent';
+import {ButtonToggleParent} from '../button-toggle/button-toggle-parent';
+import {CheckboxParent} from '../checkbox/checkbox-parent';
+import {DialogParent} from '../dialog/dialog-parent';
+import {GesturesParent} from '../gestures/gestures-parent';
+import {GridListParent} from '../grid-list/grid-list-parent';
+import {InputParent} from '../input/input-parent';
+import {ListParent} from '../list/list-parent';
 
 export const DEMO_APP_ROUTES: Routes = [
   {path: '', component: Home},
@@ -54,20 +61,20 @@ export const DEMO_APP_ROUTES: Routes = [
   {path: 'progress-bar', component: ProgressBarDemo},
   {path: 'portal', component: PortalDemo},
   {path: 'overlay', component: OverlayDemo},
-  {path: 'checkbox', component: CheckboxDemo},
-  {path: 'input', component: InputDemo},
+  {path: 'checkbox', component: CheckboxParent},
+  {path: 'input', component: InputParent},
   {path: 'toolbar', component: ToolbarDemo},
   {path: 'icon', component: IconParent},
-  {path: 'list', component: ListDemo},
+  {path: 'list', component: ListParent},
   {path: 'menu', component: MenuDemo},
   {path: 'live-announcer', component: LiveAnnouncerDemo},
-  {path: 'gestures', component: GesturesDemo},
-  {path: 'grid-list', component: GridListDemo},
+  {path: 'gestures', component: GesturesParent},
+  {path: 'grid-list', component: GridListParent},
   {path: 'tabs', component: TabsDemo, children: TABS_DEMO_ROUTES},
-  {path: 'button-toggle', component: ButtonToggleDemo},
+  {path: 'button-toggle', component: ButtonToggleParent},
   {path: 'baseline', component: BaselineDemo},
   {path: 'ripple', component: RippleDemo},
-  {path: 'dialog', component: DialogDemo},
+  {path: 'dialog', component: DialogParent},
   {path: 'tooltip', component: TooltipDemo},
   {path: 'snack-bar', component: SnackBarDemo},
   {path: 'platform', component: PlatformDemo},

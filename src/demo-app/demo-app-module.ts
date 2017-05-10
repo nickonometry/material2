@@ -51,6 +51,15 @@ import {ButtonParent} from './button/button-parent';
 import {ChipsParent} from './chips/chips-parent';
 import {IconParent} from './icon/icon-parent';
 import {ParentWrapper} from './parent-wrapper/parent-wrapper';
+import {ButtonToggleParent} from './button-toggle/button-toggle-parent';
+import {CheckboxParent} from './checkbox/checkbox-parent';
+import {DialogParent} from './dialog/dialog-parent';
+import {GesturesParent} from './gestures/gestures-parent';
+import {GridListParent} from './grid-list/grid-list-parent';
+import {InputParent} from './input/input-parent';
+import {ListParent} from './list/list-parent';
+
+
 
 @NgModule({
   imports: [
@@ -72,23 +81,30 @@ import {ParentWrapper} from './parent-wrapper/parent-wrapper';
     ButtonDemo,
     ButtonParent,
     ButtonToggleDemo,
+    ButtonToggleParent,
     CardDemo,
     CardParent,
     ChipsParent,
     ChipsDemo,
     CheckboxDemo,
+    CheckboxParent,
     DemoApp,
     DialogDemo,
+    DialogParent,
     GesturesDemo,
+    GesturesParent,
     GridListDemo,
+    GridListParent,
     Home,
     IconDemo,
     IconParent,
+    InputParent,
     InputDemo,
     JazzDialog,
     ContentElementDialog,
     IFrameDialog,
     ListDemo,
+    ListParent,
     LiveAnnouncerDemo,
     MdCheckboxDemoNestedChecklist,
     MenuDemo,

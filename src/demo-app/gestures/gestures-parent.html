@@ -1,0 +1,34 @@
+<parent-wrapper>
+    <div class="toc">
+        <ul class="toc">
+            <div class="tocHeader">Additional Resources</div>
+            <li><a href="https://material.io/guidelines/components/cards.html" target="_blank">Material Guidelines</a></li>
+            <li><a href="https://tylertechnologies.atlassian.net/wiki/spaces/UP/pages/89952420/Card" target="_blank">UX Patterns</a></li>
+        </ul>
+    </div>
+
+    <div class="guidelines">
+        <p>Gestures include touch mechanics (what your fingers do on the screen) and touch activities (results of specific gestures).</p>
+
+        <p>A touch mechanic may cause different outcomes, depending on the context in which it is used. For example, a long
+            press may select an element like a list item.</p>
+
+        <p>A touch activity may be achieved through combining multiple touch mechanics. For example, by using the touch mechanics
+            of pinch open, double-touch, or double-touch and dragging, a user may zoom in on a view.</p>
+    </div>
+
+    <div class="screenshots">
+        <md-grid-list cols="3" rowHeight="200px">
+            <md-grid-tile *ngFor="let screenshot of screenshots">
+                <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
+                <md-grid-tile-footer>
+                    <h3 md-line>{{screenshot.name}}</h3>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+
+    <div class="examples">
+        <gestures-demo></gestures-demo>
+    </div>
+</parent-wrapper>

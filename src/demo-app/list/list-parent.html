@@ -1,0 +1,31 @@
+<parent-wrapper>
+    <div class="toc">
+        <ul class="toc">
+            <div class="tocHeader">Additional Resources</div>
+            <li><a href="https://material.io/guidelines/components/cards.html" target="_blank">Material Guidelines</a></li>
+            <li><a href="https://tylertechnologies.atlassian.net/wiki/spaces/UP/pages/89952420/Card" target="_blank">UX Patterns</a></li>
+        </ul>
+    </div>
+
+    <div class="guidelines">
+        <p>Lists present multiple line items vertically as a single continuous element.</p>
+        <p>Lists are made up of a continuous column of rows. Each row contains a tile. Primary actions fill the tile, and supplemental
+            actions are represented by icons and text.</p>
+        <p>Lists are best suited for similar data types.</p>
+    </div>
+
+    <div class="screenshots">
+        <md-grid-list cols="3" rowHeight="200px">
+            <md-grid-tile *ngFor="let screenshot of screenshots">
+                <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
+                <md-grid-tile-footer>
+                    <h3 md-line>{{screenshot.name}}</h3>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+
+    <div class="examples">
+        <list-demo></list-demo>
+    </div>
+</parent-wrapper>
