@@ -33,17 +33,18 @@ import {AutocompleteDemo} from '../autocomplete/autocomplete-demo';
 import {InputDemo} from '../input/input-demo';
 import {StyleDemo} from '../style/style-demo';
 
-
 import {AutocompleteParent} from '../autocomplete/autocomplete-parent';
 import {CardParent} from '../card/card-parent';
 import {ButtonParent} from '../button/button-parent';
+import {ChipsParent} from '../chips/chips-parent';
+import {IconParent} from '../icon/icon-parent';
 
 export const DEMO_APP_ROUTES: Routes = [
   {path: '', component: Home},
   {path: 'autocomplete', component: AutocompleteParent},
   {path: 'button', component: ButtonParent},
   {path: 'card', component: CardParent},
-  {path: 'chips', component: ChipsDemo},
+  {path: 'chips', component: ChipsParent},
   {path: 'radio', component: RadioDemo},
   {path: 'select', component: SelectDemo},
   {path: 'sidenav', component: SidenavDemo},
@@ -56,7 +57,7 @@ export const DEMO_APP_ROUTES: Routes = [
   {path: 'checkbox', component: CheckboxDemo},
   {path: 'input', component: InputDemo},
   {path: 'toolbar', component: ToolbarDemo},
-  {path: 'icon', component: IconDemo},
+  {path: 'icon', component: IconParent},
   {path: 'list', component: ListDemo},
   {path: 'menu', component: MenuDemo},
   {path: 'live-announcer', component: LiveAnnouncerDemo},

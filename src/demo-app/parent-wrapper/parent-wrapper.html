@@ -1,0 +1,26 @@
+<div class="demo-card-container">
+
+<ng-content select=".toc"></ng-content>
+
+  <div class="containerX">
+    <div [fxLayout]="direction" fxLayoutAlign="space-between stretch" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="50px"
+      fxLayoutGap.sm="0px" fxLayoutGap.xs="0px">
+
+      <div fxFlex="30">
+        <h1>Guidelines</h1>
+        <ng-content select=".guidelines"></ng-content>
+      </div>
+
+      <div fxFlex="35">
+        <h1>Screenshots</h1>
+        <ng-content select=".screenshots"></ng-content>
+      </div>
+
+      <div fxFlex="35">
+          <h1>Examples</h1>
+          <ng-content select=".examples"></ng-content>
+      </div>
+
+    </div>
+  </div>
+</div>

@@ -48,7 +48,9 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import {CardParent} from './card/card-parent';
 import {AutocompleteParent} from './autocomplete/autocomplete-parent';
 import {ButtonParent} from './button/button-parent';
-
+import {ChipsParent} from './chips/chips-parent';
+import {IconParent} from './icon/icon-parent';
+import {ParentWrapper} from './parent-wrapper/parent-wrapper';
 
 @NgModule({
   imports: [
@@ -63,6 +65,7 @@ import {ButtonParent} from './button/button-parent';
     MdSelectionModule,
   ],
   declarations: [
+    ParentWrapper,
     AutocompleteDemo,
     AutocompleteParent,
     BaselineDemo,
@@ -70,15 +73,21 @@ import {ButtonParent} from './button/button-parent';
     ButtonParent,
     ButtonToggleDemo,
     CardDemo,
+    Examples,
     CardParent,
+    Guidelines,
+    Toc,
+    ChipsParent,
     ChipsDemo,
     CheckboxDemo,
     DemoApp,
+    Screenshots,
     DialogDemo,
     GesturesDemo,
     GridListDemo,
     Home,
     IconDemo,
+    IconParent,
     InputDemo,
     JazzDialog,
     ContentElementDialog,
