@@ -3,7 +3,7 @@ import {LiveAnnouncer} from '@angular/material';
 
 @Component({
   moduleId: module.id,
-  selector: 'toolbar-demo',
+  selector: 'live-announcer',
   templateUrl: 'live-announcer-demo.html',
 })
 export class LiveAnnouncerDemo {

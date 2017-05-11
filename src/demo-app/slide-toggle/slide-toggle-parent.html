@@ -1,0 +1,34 @@
+<parent-wrapper>
+    <div class="toc">
+        <ul class="toc">
+            <div class="tocHeader">Additional Resources</div>
+            <li><a href="https://material.io/guidelines/components/cards.html" target="_blank">Material Guidelines</a></li>
+            <li><a href="https://tylertechnologies.atlassian.net/wiki/spaces/UP/pages/89952420/Card" target="_blank">UX Patterns</a></li>
+        </ul>
+    </div>
+
+    <div class="guidelines">
+        <p>On/off switches toggle the state of a single settings option. The option that the switch controls, as well as the
+            state it’s in, should be made clear from the corresponding inline label. Switches take on the same visual properties
+            of the radio button.</p>
+
+        <p>The on/off slide toggle with the text “on” and “off” included within the asset is deprecated. Use the switch shown
+            here instead.</p>
+
+    </div>
+
+    <div class="screenshots">
+        <md-grid-list cols="3" rowHeight="200px">
+            <md-grid-tile *ngFor="let screenshot of screenshots">
+                <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
+                <md-grid-tile-footer>
+                    <h3 md-line>{{screenshot.name}}</h3>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+
+    <div class="examples">
+        <slide-toggle-demo></slide-toggle-demo>
+    </div>
+</parent-wrapper>

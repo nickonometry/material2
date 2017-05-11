@@ -45,6 +45,21 @@ import {GesturesParent} from '../gestures/gestures-parent';
 import {GridListParent} from '../grid-list/grid-list-parent';
 import {InputParent} from '../input/input-parent';
 import {ListParent} from '../list/list-parent';
+import {MenuParent} from '../menu/menu-parent';
+import {OverlayParent} from '../overlay/overlay-parent';
+import {PortalParent} from '../portal/portal-parent';
+import {ProgressBarParent} from '../progress-bar/progress-bar-parent';
+import {ProgressSpinnerParent} from '../progress-spinner/progress-spinner-parent';
+import {RadioParent} from '../radio/radio-parent';
+import {RippleParent} from '../ripple/ripple-parent';
+import {SelectParent} from '../select/select-parent';
+import {SidenavParent} from '../sidenav/sidenav-parent';
+import {SlideToggleParent} from '../slide-toggle/slide-toggle-parent';
+import {SliderParent} from '../slider/slider-parent';
+import {SnackBarParent} from '../snack-bar/snack-bar-parent';
+import {TabsParent} from '../tabs/tabs-parent';
+import {ToolbarParent} from '../toolbar/toolbar-parent';
+import {TooltipParent} from '../tooltip/tooltip-parent';
 
 export const DEMO_APP_ROUTES: Routes = [
   {path: '', component: Home},
@@ -52,31 +67,31 @@ export const DEMO_APP_ROUTES: Routes = [
   {path: 'button', component: ButtonParent},
   {path: 'card', component: CardParent},
   {path: 'chips', component: ChipsParent},
-  {path: 'radio', component: RadioDemo},
-  {path: 'select', component: SelectDemo},
-  {path: 'sidenav', component: SidenavDemo},
-  {path: 'slide-toggle', component: SlideToggleDemo},
-  {path: 'slider', component: SliderDemo},
-  {path: 'progress-spinner', component: ProgressSpinnerDemo},
-  {path: 'progress-bar', component: ProgressBarDemo},
-  {path: 'portal', component: PortalDemo},
-  {path: 'overlay', component: OverlayDemo},
+  {path: 'radio', component: RadioParent},
+  {path: 'select', component: SelectParent},
+  {path: 'sidenav', component: SidenavParent},
+  {path: 'slide-toggle', component: SlideToggleParent},
+  {path: 'slider', component: SliderParent},
+  {path: 'progress-spinner', component: ProgressSpinnerParent},
+  {path: 'progress-bar', component: ProgressBarParent},
+  {path: 'portal', component: PortalParent},
+  {path: 'overlay', component: OverlayParent},
   {path: 'checkbox', component: CheckboxParent},
   {path: 'input', component: InputParent},
-  {path: 'toolbar', component: ToolbarDemo},
+  {path: 'toolbar', component: ToolbarParent},
   {path: 'icon', component: IconParent},
   {path: 'list', component: ListParent},
-  {path: 'menu', component: MenuDemo},
+  {path: 'menu', component: MenuParent},
   {path: 'live-announcer', component: LiveAnnouncerDemo},
   {path: 'gestures', component: GesturesParent},
   {path: 'grid-list', component: GridListParent},
-  {path: 'tabs', component: TabsDemo, children: TABS_DEMO_ROUTES},
+  {path: 'tabs', component: TabsParent, children: TABS_DEMO_ROUTES},
   {path: 'button-toggle', component: ButtonToggleParent},
   {path: 'baseline', component: BaselineDemo},
-  {path: 'ripple', component: RippleDemo},
+  {path: 'ripple', component: RippleParent},
   {path: 'dialog', component: DialogParent},
-  {path: 'tooltip', component: TooltipDemo},
-  {path: 'snack-bar', component: SnackBarDemo},
+  {path: 'tooltip', component: TooltipParent},
+  {path: 'snack-bar', component: SnackBarParent},
   {path: 'platform', component: PlatformDemo},
   {path: 'style', component: StyleDemo},
 ];

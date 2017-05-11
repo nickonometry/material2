@@ -1,0 +1,32 @@
+<parent-wrapper>
+    <div class="toc">
+        <ul class="toc">
+            <div class="tocHeader">Additional Resources</div>
+            <li><a href="https://material.io/guidelines/components/cards.html" target="_blank">Material Guidelines</a></li>
+            <li><a href="https://tylertechnologies.atlassian.net/wiki/spaces/UP/pages/89952420/Card" target="_blank">UX Patterns</a></li>
+        </ul>
+    </div>
+
+    <div class="guidelines">
+        <p>Toolbar actions appear above the view affected by their actions. Toolbars appear a step above the content they affect.
+            They may constrain their width to accommodate material passing over them.</p>
+
+        <p>Do not separate a toolbar’s actions by another sheet of material, unless it is transient, such as a menu or dialog.</p>
+
+    </div>
+
+    <div class="screenshots">
+        <md-grid-list cols="3" rowHeight="200px">
+            <md-grid-tile *ngFor="let screenshot of screenshots">
+                <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
+                <md-grid-tile-footer>
+                    <h3 md-line>{{screenshot.name}}</h3>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+
+    <div class="examples">
+        <toolbar-demo></toolbar-demo>
+    </div>
+</parent-wrapper>

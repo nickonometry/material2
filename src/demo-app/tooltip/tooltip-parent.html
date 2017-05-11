@@ -1,0 +1,33 @@
+<parent-wrapper>
+    <div class="toc">
+        <ul class="toc">
+            <div class="tocHeader">Additional Resources</div>
+            <li><a href="https://material.io/guidelines/components/cards.html" target="_blank">Material Guidelines</a></li>
+            <li><a href="https://tylertechnologies.atlassian.net/wiki/spaces/UP/pages/89952420/Card" target="_blank">UX Patterns</a></li>
+        </ul>
+    </div>
+
+    <div class="guidelines">
+        <p>Tooltips are text labels that appear when the user hovers over, focuses on, or touches an element. Tooltips identify
+            an element when they are activated. They may contain brief helper text about its function. For example, they
+            may contain text information about actionable icons.</p>
+
+        <p>Tooltip labels do not receive input focus.</p>
+
+    </div>
+
+    <div class="screenshots">
+        <md-grid-list cols="3" rowHeight="200px">
+            <md-grid-tile *ngFor="let screenshot of screenshots">
+                <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
+                <md-grid-tile-footer>
+                    <h3 md-line>{{screenshot.name}}</h3>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>
+
+    <div class="examples">
+        <tooltip-demo></tooltip-demo>
+    </div>
+</parent-wrapper>

@@ -58,8 +58,21 @@ import {GesturesParent} from './gestures/gestures-parent';
 import {GridListParent} from './grid-list/grid-list-parent';
 import {InputParent} from './input/input-parent';
 import {ListParent} from './list/list-parent';
-
-
+import {MenuParent} from './menu/menu-parent';
+import {OverlayParent} from './overlay/overlay-parent';
+import {PortalParent} from './portal/portal-parent';
+import {ProgressBarParent} from './progress-bar/progress-bar-parent';
+import {ProgressSpinnerParent} from './progress-spinner/progress-spinner-parent';
+import {RadioParent} from './radio/radio-parent';
+import {RippleParent} from './ripple/ripple-parent';
+import {SelectParent} from './select/select-parent';
+import {SidenavParent} from './sidenav/sidenav-parent';
+import {SlideToggleParent} from './slide-toggle/slide-toggle-parent';
+import {SliderParent} from './slider/slider-parent';
+import {SnackBarParent} from './snack-bar/snack-bar-parent';
+import {TabsParent} from './tabs/tabs-parent';
+import {ToolbarParent} from './toolbar/toolbar-parent';
+import {TooltipParent} from './tooltip/tooltip-parent';
 
 @NgModule({
   imports: [
@@ -78,11 +91,25 @@ import {ListParent} from './list/list-parent';
     AutocompleteDemo,
     AutocompleteParent,
     BaselineDemo,
+    SlideToggleParent,
+    PortalParent,
+    RadioParent,
+    ProgressSpinnerParent,
     ButtonDemo,
+    OverlayParent,
+    ToolbarParent,
+    SliderParent,
+    SelectParent,
+    RippleParent,
     ButtonParent,
+    TabsParent,
+    TooltipParent,
+    SnackBarParent,
+    ProgressBarParent,
     ButtonToggleDemo,
     ButtonToggleParent,
     CardDemo,
+    SidenavParent,
     CardParent,
     ChipsParent,
     ChipsDemo,
@@ -108,6 +135,7 @@ import {ListParent} from './list/list-parent';
     LiveAnnouncerDemo,
     MdCheckboxDemoNestedChecklist,
     MenuDemo,
+    MenuParent,
     SnackBarDemo,
     OverlayDemo,
     PortalDemo,
