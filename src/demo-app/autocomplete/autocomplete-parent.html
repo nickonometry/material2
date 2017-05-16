@@ -2,8 +2,8 @@
   <div class="toc">
     <ul class="toc">
       <div class="tocHeader">Additional Resources</div>
-      <li><a href="https://material.io/guidelines/components/cards.html" target="_blank">Material Guidelines</a></li>
-      <li><a href="https://tylertechnologies.atlassian.net/wiki/spaces/UP/pages/89952420/Card" target="_blank">UX Patterns</a></li>
+      <li *ngFor="let resource of resources">
+        <a href="{{resource.url}}">{{resource.name}}</a>
     </ul>
   </div>
 

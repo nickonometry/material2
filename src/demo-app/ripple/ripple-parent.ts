@@ -9,7 +9,7 @@ import { PageTitleService } from '../services/pagetitle.service';
   styleUrls: ['ripple-parent.css'],
 })
 export class RippleParent implements OnInit {
-    screenshots: Object[] = [
+  screenshots: Object[] = [
     { name: 'Porter', human: 'Kara' },
     { name: 'Mal', human: 'Jeremy' },
     { name: 'Koby', human: 'Igor' },
@@ -17,10 +17,15 @@ export class RippleParent implements OnInit {
     { name: 'Molly', human: 'Rob' },
     { name: 'Husi', human: 'Matias' },
   ];
-    constructor(private pageTitleService: PageTitleService) {
+  resources: Object[] = [
+    { name: 'Material Guidelines', url: 'urlHere' },
+    { name: 'UX Patterns', url: 'urlHere' },
+    { name: 'Tyler UI', url: 'urlHere' },
+  ];
+  constructor(private pageTitleService: PageTitleService) {
   }
 
   ngOnInit() {
-        this.pageTitleService.setTitle('Ripple');
-    }
+    this.pageTitleService.setTitle('Ripple');
+  }
 }

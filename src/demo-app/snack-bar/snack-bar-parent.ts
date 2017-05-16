@@ -9,7 +9,7 @@ import { PageTitleService } from '../services/pagetitle.service';
   styleUrls: ['snack-bar-parent.css'],
 })
 export class SnackBarParent implements OnInit {
-    screenshots: Object[] = [
+  screenshots: Object[] = [
     { name: 'Porter', human: 'Kara' },
     { name: 'Mal', human: 'Jeremy' },
     { name: 'Koby', human: 'Igor' },
@@ -17,10 +17,15 @@ export class SnackBarParent implements OnInit {
     { name: 'Molly', human: 'Rob' },
     { name: 'Husi', human: 'Matias' },
   ];
-    constructor(private pageTitleService: PageTitleService) {
+  resources: Object[] = [
+    { name: 'Material Guidelines', url: 'urlHere' },
+    { name: 'UX Patterns', url: 'urlHere' },
+    { name: 'Tyler UI', url: 'urlHere' },
+  ];
+  constructor(private pageTitleService: PageTitleService) {
   }
 
   ngOnInit() {
-        this.pageTitleService.setTitle('Snack Bar');
-    }
+    this.pageTitleService.setTitle('Snack Bar');
+  }
 }

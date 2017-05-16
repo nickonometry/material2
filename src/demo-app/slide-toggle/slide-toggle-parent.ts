@@ -9,7 +9,7 @@ import { PageTitleService } from '../services/pagetitle.service';
   styleUrls: ['slide-toggle-parent.css'],
 })
 export class SlideToggleParent implements OnInit {
-    screenshots: Object[] = [
+  screenshots: Object[] = [
     { name: 'Porter', human: 'Kara' },
     { name: 'Mal', human: 'Jeremy' },
     { name: 'Koby', human: 'Igor' },
@@ -17,10 +17,15 @@ export class SlideToggleParent implements OnInit {
     { name: 'Molly', human: 'Rob' },
     { name: 'Husi', human: 'Matias' },
   ];
-    constructor(private pageTitleService: PageTitleService) {
+  resources: Object[] = [
+    { name: 'Material Guidelines', url: 'urlHere' },
+    { name: 'UX Patterns', url: 'urlHere' },
+    { name: 'Tyler UI', url: 'urlHere' },
+  ];
+  constructor(private pageTitleService: PageTitleService) {
   }
 
   ngOnInit() {
-        this.pageTitleService.setTitle('Slide Toggle');
-    }
+    this.pageTitleService.setTitle('Slide Toggle');
+  }
 }

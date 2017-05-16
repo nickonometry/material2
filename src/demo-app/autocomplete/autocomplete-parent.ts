@@ -11,13 +11,20 @@ import { AutocompleteDemo } from './autocomplete-demo';
 })
 export class AutocompleteParent implements OnInit {
     screenshots: Object[] = [
-    { name: 'Porter', human: 'Kara' },
-    { name: 'Mal', human: 'Jeremy' },
-    { name: 'Koby', human: 'Igor' },
-    { name: 'Razzle', human: 'Ward' },
-    { name: 'Molly', human: 'Rob' },
-    { name: 'Husi', human: 'Matias' },
+    { name: 'Porter' },
+    { name: 'Mal'},
+    { name: 'Koby' },
+    { name: 'Razzle' },
+    { name: 'Molly' },
+    { name: 'Husi' },
   ];
+
+    resources: Object[] = [
+    { name: 'Material Guidelines', url: 'urlHere' },
+    { name: 'UX Patterns', url: 'urlHere'},
+    { name: 'Tyler UI', url: 'urlHere'},
+  ];
+
     constructor(private pageTitleService: PageTitleService) {
   }
 

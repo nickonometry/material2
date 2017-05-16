@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PageTitleService } from '../services/pagetitle.service';
 
 @Component({
@@ -18,13 +18,18 @@ export class ButtonParent {
     { name: 'Molly', human: 'Rob' },
     { name: 'Husi', human: 'Matias' },
   ];
-  
+  resources: Object[] = [
+    { name: 'Material Guidelines', url: 'urlHere' },
+    { name: 'UX Patterns', url: 'urlHere' },
+    { name: 'Tyler UI', url: 'urlHere' },
+  ];
 
-    constructor(private pageTitleService: PageTitleService) {
+
+  constructor(private pageTitleService: PageTitleService) {
   }
 
   ngOnInit() {
-        this.pageTitleService.setTitle('Buttons');
-    }
+    this.pageTitleService.setTitle('Buttons');
+  }
 
 }

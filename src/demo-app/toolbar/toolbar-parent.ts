@@ -9,7 +9,7 @@ import { PageTitleService } from '../services/pagetitle.service';
   styleUrls: ['toolbar-parent.css'],
 })
 export class ToolbarParent implements OnInit {
-    screenshots: Object[] = [
+  screenshots: Object[] = [
     { name: 'Porter', human: 'Kara' },
     { name: 'Mal', human: 'Jeremy' },
     { name: 'Koby', human: 'Igor' },
@@ -17,10 +17,15 @@ export class ToolbarParent implements OnInit {
     { name: 'Molly', human: 'Rob' },
     { name: 'Husi', human: 'Matias' },
   ];
-    constructor(private pageTitleService: PageTitleService) {
+  resources: Object[] = [
+    { name: 'Material Guidelines', url: 'urlHere' },
+    { name: 'UX Patterns', url: 'urlHere' },
+    { name: 'Tyler UI', url: 'urlHere' },
+  ];
+  constructor(private pageTitleService: PageTitleService) {
   }
 
   ngOnInit() {
-        this.pageTitleService.setTitle('Toolbar');
-    }
+    this.pageTitleService.setTitle('Toolbar');
+  }
 }

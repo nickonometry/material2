@@ -10,7 +10,7 @@ import { PageTitleService } from '../services/pagetitle.service';
   encapsulation: ViewEncapsulation.None,
 })
 export class GridListParent implements OnInit {
-    screenshots: Object[] = [
+  screenshots: Object[] = [
     { name: 'Porter', human: 'Kara' },
     { name: 'Mal', human: 'Jeremy' },
     { name: 'Koby', human: 'Igor' },
@@ -18,10 +18,15 @@ export class GridListParent implements OnInit {
     { name: 'Molly', human: 'Rob' },
     { name: 'Husi', human: 'Matias' },
   ];
-    constructor(private pageTitleService: PageTitleService) {
+  resources: Object[] = [
+    { name: 'Material Guidelines', url: 'urlHere' },
+    { name: 'UX Patterns', url: 'urlHere' },
+    { name: 'Tyler UI', url: 'urlHere' },
+  ];
+  constructor(private pageTitleService: PageTitleService) {
   }
 
   ngOnInit() {
-        this.pageTitleService.setTitle('Grid List');
-    }
+    this.pageTitleService.setTitle('Grid List');
+  }
 }
