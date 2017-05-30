@@ -1,7 +1,6 @@
 import {Component, ViewEncapsulation, ElementRef, OnInit} from '@angular/core';
 import { PageTitleService } from '../services/pagetitle.service';
 
-
 @Component({
   selector: 'home',
   template: `

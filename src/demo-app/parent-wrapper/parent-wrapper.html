@@ -1,26 +1,47 @@
 <div class="demo-card-container">
 
-<ng-content select=".toc"></ng-content>
-
   <div class="containerX">
-    <div [fxLayout]="direction" fxLayoutAlign="space-between stretch" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="50px"
-      fxLayoutGap.sm="0px" fxLayoutGap.xs="0px">
-
-      <div fxFlex="20">
-        <h1>Guidelines</h1>
-        <ng-content select=".guidelines"></ng-content>
+    <div [fxLayout]="direction" fxLayoutAlign="start stretch" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="50px" fxLayoutGap.sm="0px"
+      fxLayoutGap.xs="0px">
+      <div fxFlex="11">
+        <div>
+          <ul class="toc">
+            <div class="tocHeader" >Contents</div>
+            <li><a href="{{currentURL}}#guidelines">Guidelines</a></li>
+            <li><a href="{{currentURL}}#screenshots">Screenshots</a></li>
+            <li><a href="{{currentURL}}#examples">Examples</a></li>
+          </ul>
+        </div>
       </div>
 
-      <div fxFlex="30">
-        <h1>Screenshots</h1>
-        <ng-content select=".screenshots"></ng-content>
+      <div fxFlex="11">
+        <additional-resources></additional-resources>
       </div>
-
-      <div fxFlex="50">
-          <h1>Examples</h1>
-          <ng-content select=".examples"></ng-content>
-      </div>
-
+      
     </div>
   </div>
+
+  <div class="space-title"></div>
+
+  <div id="guidelines">
+    <h1>Guidelines</h1>
+    <ng-content select=".guidelines"></ng-content>
+  </div>
+
+  <div class="space-title"></div>
+
+  <div style="width: 800px;" id="screenshots">
+    <h1>Screenshots</h1>
+    <ng-content select=".screenshots"></ng-content>
+  </div>
+
+  <div class="space-title"></div>
+
+  <div id="examples">
+    <h1>Examples</h1>
+    <a href="{{currentURL}}#top">Examples</a>
+    
+    <ng-content select=".examples"></ng-content>
+  </div>
 </div>
+

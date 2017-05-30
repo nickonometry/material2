@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, Input } from '@angular/core';
 import { PageTitleService } from '../services/pagetitle.service';
-
 
 @Component({
   moduleId: module.id,
@@ -9,23 +8,21 @@ import { PageTitleService } from '../services/pagetitle.service';
   styleUrls: ['card-parent.css'],
 })
 export class CardParent implements OnInit {
-  screenshots: Object[] = [
-    { name: 'Porter', human: 'Kara' },
-    { name: 'Mal', human: 'Jeremy' },
-    { name: 'Koby', human: 'Igor' },
-    { name: 'Razzle', human: 'Ward' },
-    { name: 'Molly', human: 'Rob' },
-    { name: 'Husi', human: 'Matias' },
-  ];
-  resources: Object[] = [
-    { name: 'Material Guidelines', url: 'urlHere' },
-    { name: 'UX Patterns', url: 'urlHere' },
-    { name: 'Tyler UI', url: 'urlHere' },
-  ];
-  constructor(private pageTitleService: PageTitleService) {
-  }
 
+  screenshots: Object[] = [
+    { name: 'screenshot1', title: 'Screenshot Example 1'},
+    { name: 'screenshot2', title: 'Screenshot Example 2'},
+    { name: 'screenshot3', title: 'Screenshot Example 3'},
+    { name: 'screenshot4', title: 'Screenshot Example 4'},
+    { name: 'screenshot5', title: 'Screenshot Example 5'},
+    { name: 'screenshot6', title: 'Screenshot Example 6'},
+  ];
+  screenshotPath: string;
+  constructor(private pageTitleService: PageTitleService,) {
+  }
   ngOnInit() {
     this.pageTitleService.setTitle('Card');
+    this.screenshotPath = "../assets/images/" + this.pageTitleService.title.value.toLowerCase() + '/';
+    console.log("The screenshot path for the card is " + this.screenshotPath)
   }
 }

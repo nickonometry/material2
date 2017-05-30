@@ -43,7 +43,7 @@ import {PlatformDemo} from './platform/platform-demo';
 import {AutocompleteDemo} from './autocomplete/autocomplete-demo';
 import {InputDemo} from './input/input-demo';
 import {StyleDemo} from './style/style-demo';
-import { FlexLayoutModule } from '@angular/flex-layout';
+import {FlexLayoutModule} from '@angular/flex-layout';
 
 import {CardParent} from './card/card-parent';
 import {AutocompleteParent} from './autocomplete/autocomplete-parent';
@@ -73,6 +73,10 @@ import {SnackBarParent} from './snack-bar/snack-bar-parent';
 import {TabsParent} from './tabs/tabs-parent';
 import {ToolbarParent} from './toolbar/toolbar-parent';
 import {TooltipParent} from './tooltip/tooltip-parent';
+import {AdditionalResources} from './AdditionalResources/additional-resources';
+import {MaterialScrollTop} from './material-scrolltop/material-scrolltop';
+
+
 
 @NgModule({
   imports: [
@@ -96,6 +100,7 @@ import {TooltipParent} from './tooltip/tooltip-parent';
     RadioParent,
     ProgressSpinnerParent,
     ButtonDemo,
+    AdditionalResources,
     OverlayParent,
     ToolbarParent,
     SliderParent,
@@ -111,6 +116,7 @@ import {TooltipParent} from './tooltip/tooltip-parent';
     CardDemo,
     SidenavParent,
     CardParent,
+    MaterialScrollTop,
     ChipsParent,
     ChipsDemo,
     CheckboxDemo,

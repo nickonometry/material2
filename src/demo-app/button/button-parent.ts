@@ -11,19 +11,13 @@ export class ButtonParent {
   isDisabled: boolean = false;
   clickCounter: number = 0;
   screenshots: Object[] = [
-    { name: 'Porter', human: 'Kara' },
-    { name: 'Mal', human: 'Jeremy' },
-    { name: 'Koby', human: 'Igor' },
-    { name: 'Razzle', human: 'Ward' },
-    { name: 'Molly', human: 'Rob' },
-    { name: 'Husi', human: 'Matias' },
+    { name: 'screenshot1', title: 'Screenshot Example 1'},
+    { name: 'screenshot2', title: 'Screenshot Example 2'},
+    { name: 'screenshot3', title: 'Screenshot Example 3'},
+    { name: 'screenshot4', title: 'Screenshot Example 4'},
+    { name: 'screenshot5', title: 'Screenshot Example 5'},
+    { name: 'screenshot6', title: 'Screenshot Example 6'},
   ];
-  resources: Object[] = [
-    { name: 'Material Guidelines', url: 'urlHere' },
-    { name: 'UX Patterns', url: 'urlHere' },
-    { name: 'Tyler UI', url: 'urlHere' },
-  ];
-
 
   constructor(private pageTitleService: PageTitleService) {
   }

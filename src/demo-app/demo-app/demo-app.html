@@ -13,7 +13,7 @@
     </md-nav-list>
     <button md-button (click)="start.close()">CLOSE</button>
   </md-sidenav>
-  <div>
+  <div id="top">
     <md-toolbar color="primary">
       <button md-icon-button (click)="start.open()">
         <md-icon class="md-24" >menu</md-icon>
@@ -25,6 +25,12 @@
 
     <div class="componentToolbar" [fxLayout]="direction" fxLayoutAlign="start center">
       <h1>{{pageTitleService.title.value}}</h1>
+      <span class="example-spacer"></span>
+      <div [fxLayout]="direction" class="containerX" fxLayout.xs="column" fxLayout.sm="column">
+        <span mdTooltip="Material UI Guidelines"><a href="https://material.io/guidelines/" target="_blank"><img src="../images/material-icon.png" width="32" height="32" style="margin-right: 25px;" /></a></span>
+        <span mdTooltip="Tyler Angular"><a href="http://pladvsv-tldr:8888/#/" target="_blank"><img src="../images/tyler-ui-icon.png" width="32" height="32" style="margin-right: 25px;" /></a></span>
+        <span mdTooltip="Confluence Pattern Library"><a href="https://tylertechnologies.atlassian.net/wiki/spaces/UP/overview" target="_blank"><img src="../images/confluence-icon.png" width="32" height="32" style="margin-right: 25px;" /></a></span>
+      </div>
     </div>
 
     <div #root="$implicit" dir="ltr" class="demo-content">
@@ -32,3 +38,5 @@
     </div>
   </div>
 </md-sidenav-container>
+
+<material-scrolltop></material-scrolltop>

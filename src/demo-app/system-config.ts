@@ -24,7 +24,7 @@ System.config({
       'node:@angular/platform-browser/bundles/platform-browser-animations.umd.js',
     '@angular/platform-browser-dynamic':
       'node:@angular/platform-browser-dynamic/bundles/platform-browser-dynamic.umd.js',
-
+      'ng2-page-scroll': 'node:ng2-page-scroll/bundles/ng2-page-scroll.umd.js',
     '@angular/material': 'dist/bundles/material.umd.js',
     '@angular/flex-layout' : 'node:@angular/flex-layout/bundles/flex-layout.umd.js',
     '@angular/cdk': 'dist/bundles/cdk.umd.js'
