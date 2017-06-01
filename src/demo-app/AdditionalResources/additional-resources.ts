@@ -16,7 +16,7 @@ export class AdditionalResources {
     ConfluenceURL: string;
 
     constructor(router: Router) {
-        router.events.subscribe((url: any) => console.log("The subscribed URL is " + url));
+        router.events.subscribe((url: any) => console.log("Additonal Resources Component - The subscribed URL is " + url));
         var thisUrl = router.url
 
         switch (thisUrl) {

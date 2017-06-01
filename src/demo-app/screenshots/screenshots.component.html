@@ -1,0 +1,10 @@
+    <div class="screenshots">
+        <md-grid-list cols="3" rowHeight="200px" gutterSize="20px">
+            <md-grid-tile *ngFor="let screenshot of screenshots" style="border:1px solid #000000">
+                <a class="example-image-link" href="{{incomingData}}{{screenshot.name}}.png" data-lightbox="example"><img [alt]="screenshot.title" src="{{incomingData}}{{screenshot.name}}.png"></a>
+                <md-grid-tile-footer>
+                    <h3 md-line>{{screenshot.title}}</h3>
+                </md-grid-tile-footer>
+            </md-grid-tile>
+        </md-grid-list>
+    </div>

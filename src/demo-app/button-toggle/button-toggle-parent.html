@@ -19,17 +19,6 @@
         </ul>
     </div>
 
-    <div class="screenshots">
-        <md-grid-list cols="3" rowHeight="200px">
-            <md-grid-tile *ngFor="let screenshot of screenshots">
-                <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
-                <md-grid-tile-footer>
-                    <h3 md-line>{{screenshot.name}}</h3>
-                </md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
-
     <div class="examples">
         <button-toggle-demo></button-toggle-demo>
     </div>

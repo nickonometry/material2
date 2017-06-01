@@ -75,8 +75,7 @@ import {ToolbarParent} from './toolbar/toolbar-parent';
 import {TooltipParent} from './tooltip/tooltip-parent';
 import {AdditionalResources} from './AdditionalResources/additional-resources';
 import {MaterialScrollTop} from './material-scrolltop/material-scrolltop';
-
-
+import {ScreenshotComponent} from './screenshots/screenshots.component';
 
 @NgModule({
   imports: [
@@ -98,6 +97,7 @@ import {MaterialScrollTop} from './material-scrolltop/material-scrolltop';
     SlideToggleParent,
     PortalParent,
     RadioParent,
+    ScreenshotComponent,
     ProgressSpinnerParent,
     ButtonDemo,
     AdditionalResources,

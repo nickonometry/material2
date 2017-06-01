@@ -8,6 +8,7 @@
           <ul class="toc">
             <div class="tocHeader" >Contents</div>
             <li><a href="{{currentURL}}#guidelines">Guidelines</a></li>
+            <li><a href="{{currentURL}}#specs">Specs</a></li>
             <li><a href="{{currentURL}}#screenshots">Screenshots</a></li>
             <li><a href="{{currentURL}}#examples">Examples</a></li>
           </ul>
@@ -30,17 +31,22 @@
 
   <div class="space-title"></div>
 
+   <div id="specs">
+    <h1>Specs</h1>
+    <ng-content select=".specs"></ng-content>
+  </div>
+
+  <div class="space-title"></div>
+
   <div style="width: 800px;" id="screenshots">
     <h1>Screenshots</h1>
-    <ng-content select=".screenshots"></ng-content>
+    <screenshot-component [parentData]="screenshotPath" [testData]="currentURL"></screenshot-component>
   </div>
 
   <div class="space-title"></div>
 
   <div id="examples">
     <h1>Examples</h1>
-    <a href="{{currentURL}}#top">Examples</a>
-    
     <ng-content select=".examples"></ng-content>
   </div>
 </div>

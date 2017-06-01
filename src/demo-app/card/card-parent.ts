@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, Input } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { PageTitleService } from '../services/pagetitle.service';
 
 @Component({
@@ -22,7 +22,6 @@ export class CardParent implements OnInit {
   }
   ngOnInit() {
     this.pageTitleService.setTitle('Card');
-    this.screenshotPath = "../assets/images/" + this.pageTitleService.title.value.toLowerCase() + '/';
-    console.log("The screenshot path for the card is " + this.screenshotPath)
+    this.pageTitleService.setScreenshotsURL('assets/images/card/');
   }
 }
