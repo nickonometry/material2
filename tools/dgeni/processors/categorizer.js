@@ -46,7 +46,7 @@ module.exports = function categorizer() {
     // Categorize the current visited classDoc into its Angular type.
     if (isDirective(classDoc)) {
       classDoc.isDirective = true;
-      classDoc.directiveExportAs = getDirectiveExportAs(classDoc);
+      classDoc.directiveExportAs = getMetadataProperty(classDoc, 'exportAs');
       classDoc.directiveSelectors =  getDirectiveSelectors(classDoc);
     } else if (isService(classDoc)) {
       classDoc.isService = true;
@@ -90,9 +90,9 @@ module.exports = function categorizer() {
   }
 };
 
-/** Function that walks through all inherited docs and collects public methods. */
+/** Walks through all inherited docs and collects public methods. */
 function resolveMethods(classDoc) {
-  let methods = classDoc.members.filter(member => member.hasOwnProperty('parameters'));
+  let methods = classDoc.members.filter(isMethod);
 
   if (classDoc.inheritedDoc) {
     methods = methods.concat(resolveMethods(classDoc.inheritedDoc));
@@ -101,9 +101,9 @@ function resolveMethods(classDoc) {
   return methods;
 }
 
-/** Function that walks through all inherited docs and collects public properties. */
+/** Walks through all inherited docs and collects public properties. */
 function resolveProperties(classDoc) {
-  let properties = classDoc.members.filter(member => !member.hasOwnProperty('parameters'));
+  let properties = classDoc.members.filter(isProperty);
 
   if (classDoc.inheritedDoc) {
     properties = properties.concat(resolveProperties(classDoc.inheritedDoc));
@@ -153,6 +153,18 @@ function normalizeMethodParameters(method) {
   }
 }
 
+function isMethod(doc) {
+  return doc.hasOwnProperty('parameters');
+}
+
+function isGenericTypeParameter(doc) {
+  return doc.classDoc.typeParams && `<${doc.name}>` === doc.classDoc.typeParams;
+}
+
+function isProperty(doc) {
+  return doc.docType === 'member' && !isMethod(doc) && !isGenericTypeParameter(doc);
+}
+
 function isDirective(doc) {
   return hasClassDecorator(doc, 'Component') || hasClassDecorator(doc, 'Directive');
 }
@@ -186,26 +198,25 @@ function getDirectiveOutputAlias(doc) {
 }
 
 function getDirectiveSelectors(classDoc) {
-  let metadata = classDoc.decorators
-    .find(d => d.name === 'Component' || d.name === 'Directive').arguments[0];
+  const directiveSelectors = getMetadataProperty(classDoc, 'selector');
 
-  let selectorMatches = /selector\s*:\s*(?:"|')([^']*?)(?:"|')/g.exec(metadata);
-  selectorMatches = selectorMatches && selectorMatches[1];
-
-  return selectorMatches ? selectorMatches.split(/\s*,\s*/)
-    .filter(s => s !== '' && !s.includes('mat') && !SELECTOR_BLACKLIST.has(s))
-    : selectorMatches;
+  if (directiveSelectors) {
+    // Filter blacklisted selectors and remove line-breaks in resolved selectors.
+    return directiveSelectors.replace(/[\r\n]/g, '').split(/\s*,\s*/)
+      .filter(s => s !== '' && !s.includes('mat') && !SELECTOR_BLACKLIST.has(s));
+  }
 }
 
-function getDirectiveExportAs(doc) {
-  let metadata = doc.decorators
-      .find(d => d.name === 'Component' || d.name === 'Directive').arguments[0];
+function getMetadataProperty(doc, property) {
+  const metadata = doc.decorators
+    .find(d => d.name === 'Component' || d.name === 'Directive').arguments[0];
 
-  // Use a Regex to determine the exportAs metadata because we can't parse the JSON due to
-  // environment variables inside of the JSON.
-  let exportMatches = /exportAs\s*:\s*(?:"|')(\w+)(?:"|')/g.exec(metadata);
+  // Use a Regex to determine the given metadata property. This is necessary, because we can't
+  // parse the JSON due to environment variables inside of the JSON (e.g module.id)
+  let matches = new RegExp(`${property}s*:\\s*(?:"|'|\`)((?:.|\\n|\\r)+?)(?:"|'|\`)`)
+    .exec(metadata);
 
-  return exportMatches && exportMatches[1];
+  return matches && matches[1].trim();
 }
 
 function hasMemberDecorator(doc, decoratorName) {

@@ -13,13 +13,13 @@ import {
 } from '@angular/core';
 import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 import {DOCUMENT} from '@angular/platform-browser';
-import {Overlay, OverlayRef, OverlayState, TemplatePortal} from '../core';
+import {Overlay, OverlayRef, OverlayState, TemplatePortal, RepositionScrollStrategy} from '../core';
 import {MdAutocomplete} from './autocomplete';
 import {PositionStrategy} from '../core/overlay/position/position-strategy';
 import {ConnectedPositionStrategy} from '../core/overlay/position/connected-position-strategy';
 import {Observable} from 'rxjs/Observable';
 import {MdOptionSelectionChange, MdOption} from '../core/option/option';
-import {ENTER, UP_ARROW, DOWN_ARROW} from '../core/keyboard/keycodes';
+import {ENTER, UP_ARROW, DOWN_ARROW, ESCAPE} from '../core/keyboard/keycodes';
 import {Dir} from '../core/rtl/dir';
 import {MdInputContainer} from '../input/input-container';
 import {ScrollDispatcher} from '../core/overlay/scroll/scroll-dispatcher';
@@ -76,9 +76,6 @@ export class MdAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   /** The subscription to positioning changes in the autocomplete panel. */
   private _panelPositionSubscription: Subscription;
 
-  /** Subscription to global scroll events. */
-  private _scrollSubscription: Subscription;
-
   /** Strategy that is used to position the panel. */
   private _positionStrategy: ConnectedPositionStrategy;
 
@@ -132,17 +129,12 @@ export class MdAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
     } else {
       /** Update the panel width, in case the host width has changed */
       this._overlayRef.getState().width = this._getHostWidth();
+      this._overlayRef.updateSize();
     }
 
     if (!this._overlayRef.hasAttached()) {
       this._overlayRef.attach(this._portal);
       this._subscribeToClosingActions();
-    }
-
-    if (!this._scrollSubscription) {
-      this._scrollSubscription = this._scrollDispatcher.scrolled(0, () => {
-        this._overlayRef.updatePosition();
-      });
     }
 
     this.autocomplete._setVisibility();
@@ -154,11 +146,6 @@ export class MdAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   closePanel(): void {
     if (this._overlayRef && this._overlayRef.hasAttached()) {
       this._overlayRef.detach();
-    }
-
-    if (this._scrollSubscription) {
-      this._scrollSubscription.unsubscribe();
-      this._scrollSubscription = null;
     }
 
     this._panelOpen = false;
@@ -199,9 +186,13 @@ export class MdAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   private get _outsideClickStream(): Observable<any> {
     if (this._document) {
       return Observable.fromEvent(this._document, 'click').filter((event: MouseEvent) => {
-        let clickTarget = event.target as HTMLElement;
+        const clickTarget = event.target as HTMLElement;
+        const inputContainer = this._inputContainer ?
+            this._inputContainer._elementRef.nativeElement : null;
+
         return this._panelOpen &&
-               !this._inputContainer._elementRef.nativeElement.contains(clickTarget) &&
+               clickTarget !== this._element.nativeElement &&
+               (!inputContainer || !inputContainer.contains(clickTarget)) &&
                !this._overlayRef.overlayElement.contains(clickTarget);
       });
     }
@@ -240,7 +231,9 @@ export class MdAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
   }
 
   _handleKeydown(event: KeyboardEvent): void {
-    if (this.activeOption && event.keyCode === ENTER) {
+    if (event.keyCode === ESCAPE && this.panelOpen) {
+      this.closePanel();
+    } else if (this.activeOption && event.keyCode === ENTER) {
       this.activeOption._selectViaInteraction();
       event.preventDefault();
     } else {
@@ -348,6 +341,7 @@ export class MdAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
       this._clearPreviousSelectedOption(event.source);
       this._setTriggerValue(event.source.value);
       this._onChange(event.source.value);
+      this._element.nativeElement.focus();
     }
 
     this.closePanel();
@@ -374,6 +368,7 @@ export class MdAutocompleteTrigger implements ControlValueAccessor, OnDestroy {
     overlayState.positionStrategy = this._getOverlayPosition();
     overlayState.width = this._getHostWidth();
     overlayState.direction = this._dir ? this._dir.value : 'ltr';
+    overlayState.scrollStrategy = new RepositionScrollStrategy(this._scrollDispatcher);
     return overlayState;
   }
 

@@ -10,7 +10,7 @@ import {
     ViewContainerRef,
 } from '@angular/core';
 import {MdMenuPanel} from './menu-panel';
-import {MdMenuMissingError} from './menu-errors';
+import {throwMdMenuMissingError} from './menu-errors';
 import {
     isFakeMousedownFromScreenReader,
     Dir,
@@ -22,6 +22,8 @@ import {
     ConnectedPositionStrategy,
     HorizontalConnectionPos,
     VerticalConnectionPos,
+    RepositionScrollStrategy,
+    ScrollDispatcher,
 } from '../core';
 import {Subscription} from 'rxjs/Subscription';
 import {MenuPositionX, MenuPositionY} from './menu-positions';
@@ -78,7 +80,8 @@ export class MdMenuTrigger implements AfterViewInit, OnDestroy {
   @Output() onMenuClose = new EventEmitter<void>();
 
   constructor(private _overlay: Overlay, private _element: ElementRef,
-              private _viewContainerRef: ViewContainerRef, @Optional() private _dir: Dir) { }
+              private _viewContainerRef: ViewContainerRef, @Optional() private _dir: Dir,
+              private _scrollDispatcher: ScrollDispatcher) { }
 
   ngAfterViewInit() {
     this._checkMenu();
@@ -188,7 +191,7 @@ export class MdMenuTrigger implements AfterViewInit, OnDestroy {
    */
   private _checkMenu() {
     if (!this.menu) {
-      throw new MdMenuMissingError();
+      throwMdMenuMissingError();
     }
   }
 
@@ -216,6 +219,7 @@ export class MdMenuTrigger implements AfterViewInit, OnDestroy {
     overlayState.hasBackdrop = true;
     overlayState.backdropClass = 'cdk-overlay-transparent-backdrop';
     overlayState.direction = this.dir;
+    overlayState.scrollStrategy = new RepositionScrollStrategy(this._scrollDispatcher);
     return overlayState;
   }
 
@@ -244,10 +248,10 @@ export class MdMenuTrigger implements AfterViewInit, OnDestroy {
    */
   private _getPosition(): ConnectedPositionStrategy  {
     const [posX, fallbackX]: HorizontalConnectionPos[] =
-      this.menu.positionX === 'before' ? ['end', 'start'] : ['start', 'end'];
+      this.menu.xPosition === 'before' ? ['end', 'start'] : ['start', 'end'];
 
     const [overlayY, fallbackOverlayY]: VerticalConnectionPos[] =
-      this.menu.positionY === 'above' ? ['bottom', 'top'] : ['top', 'bottom'];
+      this.menu.yPosition === 'above' ? ['bottom', 'top'] : ['top', 'bottom'];
 
     let originY = overlayY;
     let fallbackOriginY = fallbackOverlayY;

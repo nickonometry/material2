@@ -9,20 +9,9 @@ import {
   SimpleChange,
   ViewEncapsulation,
   AfterViewChecked,
-  Optional,
-  SkipSelf,
 } from '@angular/core';
-import {Http} from '@angular/http';
-import {DomSanitizer} from '@angular/platform-browser';
-import {MdError} from '../core';
-import {MdIconRegistry, MdIconNameNotFoundError} from './icon-registry';
+import {MdIconRegistry} from './icon-registry';
 
-/** Exception thrown when an invalid icon name is passed to an md-icon component. */
-export class MdIconInvalidNameError extends MdError {
-  constructor(iconName: string) {
-      super(`Invalid icon name: "${iconName}"`);
-  }
-}
 
 /**
  * Component to display an icon. It can be used in the following ways:
@@ -123,12 +112,12 @@ export class MdIcon implements OnChanges, OnInit, AfterViewChecked {
    * The separator for the two fields is ':'. If there is no separator, an empty
    * string is returned for the icon set and the entire value is returned for
    * the icon name. If the argument is falsy, returns an array of two empty strings.
-   * Throws a MdIconInvalidNameError if the name contains two or more ':' separators.
+   * Throws an error if the name contains two or more ':' separators.
    * Examples:
    *   'social:cake' -> ['social', 'cake']
    *   'penguin' -> ['', 'penguin']
    *   null -> ['', '']
-   *   'a:b:c' -> (throws MdIconInvalidNameError)
+   *   'a:b:c' -> (throws Error)
    */
   private _splitIconName(iconName: string): [string, string] {
     if (!iconName) {
@@ -142,7 +131,7 @@ export class MdIcon implements OnChanges, OnInit, AfterViewChecked {
       case 2:
         return <[string, string]>parts;
       default:
-        throw new MdIconInvalidNameError(iconName);
+        throw new Error(`Invalid icon name: "${iconName}"`);
     }
   }
 
@@ -154,7 +143,7 @@ export class MdIcon implements OnChanges, OnInit, AfterViewChecked {
         const [namespace, iconName] = this._splitIconName(this.svgIcon);
         this._mdIconRegistry.getNamedSvgIcon(iconName, namespace).first().subscribe(
             svg => this._setSvgElement(svg),
-            (err: MdIconNameNotFoundError) => console.log(`Error retrieving icon: ${err.message}`));
+            (err: Error) => console.log(`Error retrieving icon: ${err.message}`));
       }
     }
     if (this._usingFontIcon()) {
@@ -250,15 +239,3 @@ export class MdIcon implements OnChanges, OnInit, AfterViewChecked {
     }
   }
 }
-
-export function ICON_REGISTRY_PROVIDER_FACTORY(
-    parentRegistry: MdIconRegistry, http: Http, sanitizer: DomSanitizer) {
-  return parentRegistry || new MdIconRegistry(http, sanitizer);
-}
-
-export const ICON_REGISTRY_PROVIDER = {
-  // If there is already an MdIconRegistry available, use that. Otherwise, provide a new one.
-  provide: MdIconRegistry,
-  deps: [[new Optional(), new SkipSelf(), MdIconRegistry], Http, DomSanitizer],
-  useFactory: ICON_REGISTRY_PROVIDER_FACTORY,
-};

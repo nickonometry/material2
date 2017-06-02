@@ -14,17 +14,15 @@ import {
   NgZone,
   OnDestroy,
 } from '@angular/core';
-import {Dir, MdError, coerceBooleanProperty} from '../core';
+import {Dir, coerceBooleanProperty} from '../core';
 import {FocusTrapFactory, FocusTrap} from '../core/a11y/focus-trap';
 import {ESCAPE} from '../core/keyboard/keycodes';
 import 'rxjs/add/operator/first';
 
 
-/** Exception thrown when two MdSidenav are matching the same side. */
-export class MdDuplicatedSidenavError extends MdError {
-  constructor(align: string) {
-    super(`A sidenav was already declared for 'align="${align}"'`);
-  }
+/** Throws an exception when two MdSidenav are matching the same side. */
+export function throwMdDuplicatedSidenavError(align: string) {
+  throw new Error(`A sidenav was already declared for 'align="${align}"'`);
 }
 
 
@@ -133,7 +131,7 @@ export class MdSidenav implements AfterContentInit, OnDestroy {
       this._elementFocusedBeforeSidenavWasOpened = document.activeElement as HTMLElement;
 
       if (this.isFocusTrapEnabled && this._focusTrap) {
-        this._focusTrap.focusFirstTabbableElementWhenReady();
+        this._focusTrap.focusInitialElementWhenReady();
       }
     });
 
@@ -384,8 +382,8 @@ export class MdSidenavContainer implements AfterContentInit {
    */
   private _watchSidenavToggle(sidenav: MdSidenav): void {
     if (!sidenav || sidenav.mode === 'side') { return; }
-    sidenav.onOpen.subscribe(() => this._setContainerClass(sidenav, true));
-    sidenav.onClose.subscribe(() => this._setContainerClass(sidenav, false));
+    sidenav.onOpen.subscribe(() => this._setContainerClass(true));
+    sidenav.onClose.subscribe(() => this._setContainerClass(false));
   }
 
   /**
@@ -403,7 +401,7 @@ export class MdSidenavContainer implements AfterContentInit {
   }
 
   /** Toggles the 'mat-sidenav-opened' class on the main 'md-sidenav-container' element. */
-  private _setContainerClass(sidenav: MdSidenav, isAdd: boolean): void {
+  private _setContainerClass(isAdd: boolean): void {
     if (isAdd) {
       this._renderer.addClass(this._element.nativeElement, 'mat-sidenav-opened');
     } else {
@@ -421,12 +419,12 @@ export class MdSidenavContainer implements AfterContentInit {
     for (let sidenav of this._sidenavs.toArray()) {
       if (sidenav.align == 'end') {
         if (this._end != null) {
-          throw new MdDuplicatedSidenavError('end');
+          throwMdDuplicatedSidenavError('end');
         }
         this._end = sidenav;
       } else {
         if (this._start != null) {
-          throw new MdDuplicatedSidenavError('start');
+          throwMdDuplicatedSidenavError('start');
         }
         this._start = sidenav;
       }

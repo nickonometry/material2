@@ -32,6 +32,9 @@ import {PlatformDemo} from '../platform/platform-demo';
 import {AutocompleteDemo} from '../autocomplete/autocomplete-demo';
 import {InputDemo} from '../input/input-demo';
 import {StyleDemo} from '../style/style-demo';
+import {DatepickerDemo} from '../datepicker/datepicker-demo';
+import {DataTableDemo} from '../data-table/data-table-demo';
+import {TypographyDemo} from '../typography/typography-demo';
 
 import {AutocompleteParent} from '../autocomplete/autocomplete-parent';
 import {CardParent} from '../card/card-parent';
@@ -63,6 +66,7 @@ import {TooltipParent} from '../tooltip/tooltip-parent';
 
 export const DEMO_APP_ROUTES: Routes = [
   {path: '', component: Home},
+<<<<<<< HEAD
   {path: 'autocomplete', component: AutocompleteParent},
   {path: 'button', component: ButtonParent},
   {path: 'card', component: CardParent},
@@ -82,6 +86,29 @@ export const DEMO_APP_ROUTES: Routes = [
   {path: 'icon', component: IconParent},
   {path: 'list', component: ListParent},
   {path: 'menu', component: MenuParent},
+=======
+  {path: 'autocomplete', component: AutocompleteDemo},
+  {path: 'button', component: ButtonDemo},
+  {path: 'card', component: CardDemo},
+  {path: 'chips', component: ChipsDemo},
+  {path: 'data-table', component: DataTableDemo},
+  {path: 'datepicker', component: DatepickerDemo},
+  {path: 'radio', component: RadioDemo},
+  {path: 'select', component: SelectDemo},
+  {path: 'sidenav', component: SidenavDemo},
+  {path: 'slide-toggle', component: SlideToggleDemo},
+  {path: 'slider', component: SliderDemo},
+  {path: 'progress-spinner', component: ProgressSpinnerDemo},
+  {path: 'progress-bar', component: ProgressBarDemo},
+  {path: 'portal', component: PortalDemo},
+  {path: 'overlay', component: OverlayDemo},
+  {path: 'checkbox', component: CheckboxDemo},
+  {path: 'input', component: InputDemo},
+  {path: 'toolbar', component: ToolbarDemo},
+  {path: 'icon', component: IconDemo},
+  {path: 'list', component: ListDemo},
+  {path: 'menu', component: MenuDemo},
+>>>>>>> 615fa2a3fc164f1830a2f18b789856d1c8090292
   {path: 'live-announcer', component: LiveAnnouncerDemo},
   {path: 'gestures', component: GesturesParent},
   {path: 'grid-list', component: GridListParent},
@@ -94,4 +121,5 @@ export const DEMO_APP_ROUTES: Routes = [
   {path: 'snack-bar', component: SnackBarParent},
   {path: 'platform', component: PlatformDemo},
   {path: 'style', component: StyleDemo},
+  {path: 'typography', component: TypographyDemo}
 ];

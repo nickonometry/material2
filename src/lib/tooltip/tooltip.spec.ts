@@ -35,7 +35,7 @@ describe('MdTooltip', () => {
       imports: [MdTooltipModule, OverlayModule, NoopAnimationsModule],
       declarations: [BasicTooltipDemo, ScrollableTooltipDemo, OnPushTooltipDemo],
       providers: [
-        {provide: Platform, useValue: {IOS: false}},
+        {provide: Platform, useValue: {IOS: false, isBrowser: true}},
         {provide: OverlayContainer, useFactory: () => {
           overlayContainerElement = document.createElement('div');
           document.body.appendChild(overlayContainerElement);
@@ -49,6 +49,10 @@ describe('MdTooltip', () => {
 
     TestBed.compileComponents();
   }));
+
+  afterEach(() => {
+    document.body.removeChild(overlayContainerElement);
+  });
 
   describe('basic usage', () => {
     let fixture: ComponentFixture<BasicTooltipDemo>;
@@ -349,6 +353,19 @@ describe('MdTooltip', () => {
         tooltipDirective.show();
       }).toThrowError('Tooltip position "everywhere" is invalid.');
     });
+
+    it('should pass the layout direction to the tooltip', fakeAsync(() => {
+      dir.value = 'rtl';
+
+      tooltipDirective.show();
+      tick(0);
+      fixture.detectChanges();
+
+      const tooltipWrapper = overlayContainerElement.querySelector('.cdk-overlay-pane');
+
+      expect(tooltipWrapper).toBeTruthy('Expected tooltip to be shown.');
+      expect(tooltipWrapper.getAttribute('dir')).toBe('rtl', 'Expected tooltip to be in RTL mode.');
+    }));
   });
 
   describe('scrollable usage', () => {
@@ -444,14 +461,6 @@ describe('MdTooltip', () => {
     }));
   });
 
-  describe('destroy', () => {
-    it('does not throw an error on destroy', () => {
-      const fixture = TestBed.createComponent(BasicTooltipDemo);
-      fixture.detectChanges();
-      delete fixture.componentInstance.tooltip.scrollSubscription;
-      expect(fixture.destroy.bind(fixture)).not.toThrow();
-    });
-  });
 });
 
 @Component({

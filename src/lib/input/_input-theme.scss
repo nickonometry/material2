@@ -1,5 +1,6 @@
 @import '../core/theming/palette';
 @import '../core/theming/theming';
+@import '../core/typography/typography-utils';
 
 
 @mixin mat-input-theme($theme) {
@@ -42,7 +43,7 @@
     color: mat-color($foreground, disabled-text);
   }
 
-  // See mat-input-placeholder-floating mixin in input.scss
+  // See mat-input-placeholder-floating mixin in input-container.scss
   input.mat-input-element:-webkit-autofill + .mat-input-placeholder,
   .mat-focused .mat-input-placeholder.mat-float {
     .mat-placeholder-required {
@@ -52,16 +53,17 @@
 
   .mat-input-underline {
     border-color: $input-underline-color;
+  }
 
-    .mat-input-ripple {
-      background-color: $input-underline-focused-color;
+  .mat-input-ripple {
+    background-color: $input-underline-focused-color;
 
-      &.mat-accent {
-        background-color: $input-underline-color-accent;
-      }
-      &.mat-warn {
-        background-color: $input-underline-color-warn;
-      }
+    &.mat-accent {
+      background-color: $input-underline-color-accent;
+    }
+
+    &.mat-warn {
+      background-color: $input-underline-color-warn;
     }
   }
 
@@ -69,13 +71,13 @@
   // achieved with the ng-* classes, we use this approach in order to ensure that the same
   // logic is used to style the error state and to show the error messages.
   .mat-input-invalid {
-    .mat-input-placeholder,
-    .mat-placeholder-required {
+    .mat-input-placeholder {
       color: $input-underline-color-warn;
-    }
 
-    .mat-input-underline {
-      border-color: $input-underline-color-warn;
+      &.mat-accent,
+      &.mat-float .mat-placeholder-required {
+        color: $input-underline-color-warn;
+      }
     }
 
     .mat-input-ripple {
@@ -85,5 +87,24 @@
 
   .mat-input-error {
     color: $input-underline-color-warn;
+  }
+}
+
+@mixin mat-input-typography($config) {
+  .mat-input-container {
+    font-family: mat-font-family($config);
+    line-height: normal;
+
+    .mat-icon {
+      font-size: 100%;
+    }
+  }
+
+  .mat-input-placeholder {
+    font-size: 100%;
+  }
+
+  .mat-input-subscript-wrapper {
+    font-size: 75%;
   }
 }

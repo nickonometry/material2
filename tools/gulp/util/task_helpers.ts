@@ -2,13 +2,13 @@ import * as child_process from 'child_process';
 import * as fs from 'fs';
 import * as gulp from 'gulp';
 import * as path from 'path';
-import {PROJECT_ROOT} from '../constants';
+import {PROJECT_ROOT} from '../build-config';
+import {yellow} from 'chalk';
 
 /* Those imports lack typings. */
 const gulpClean = require('gulp-clean');
 const gulpRunSequence = require('run-sequence');
 const gulpSass = require('gulp-sass');
-const gulpSourcemaps = require('gulp-sourcemaps');
 const gulpConnect = require('gulp-connect');
 const gulpIf = require('gulp-if');
 const gulpCleanCss = require('gulp-clean-css');
@@ -37,15 +37,17 @@ export function tsBuildTask(tsConfigPath: string) {
   return execNodeTask('typescript', 'tsc', ['-p', tsConfigPath]);
 }
 
+/** Creates a task that runs the Angular Compiler CLI. */
+export function ngcBuildTask(tsConfigPath: string) {
+  return execNodeTask('@angular/compiler-cli', 'ngc', ['-p', tsConfigPath]);
+}
 
 /** Create a SASS Build Task. */
 export function sassBuildTask(dest: string, root: string, minify = false) {
   return () => {
     return gulp.src(_globify(root, '**/*.scss'))
-      .pipe(gulpSourcemaps.init({ loadMaps: true }))
       .pipe(gulpSass().on('error', gulpSass.logError))
       .pipe(gulpIf(minify, gulpCleanCss()))
-      .pipe(gulpSourcemaps.write('.'))
       .pipe(gulp.dest(dest));
   };
 }
@@ -173,7 +175,8 @@ export function serverTask(packagePath: string, livereload = true) {
 
 /** Triggers a reload when livereload is enabled and a gulp-connect server is running. */
 export function triggerLivereload() {
-  gulp.src('dist').pipe(gulpConnect.reload());
+  console.log(yellow('Server: Changes were detected and a livereload was triggered.'));
+  return gulp.src('dist').pipe(gulpConnect.reload());
 }
 
 

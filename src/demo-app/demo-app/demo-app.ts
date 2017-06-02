@@ -1,25 +1,49 @@
+<<<<<<< HEAD
 import {Component, ViewEncapsulation, ElementRef, OnInit} from '@angular/core';
 import { PageTitleService } from '../services/pagetitle.service';
+=======
+import {Component, ViewEncapsulation, ElementRef, ChangeDetectionStrategy} from '@angular/core';
+
+const changeDetectionKey = 'mdDemoChangeDetection';
+>>>>>>> 615fa2a3fc164f1830a2f18b789856d1c8090292
 
 @Component({
   selector: 'home',
   template: `
     <p>Welcome to the development demos for Angular Material!</p>
-    <p>Open the sidenav to select a demo. </p>
+    <p>Open the sidenav to select a demo.</p>
   `
 })
 export class Home {}
 
 @Component({
   moduleId: module.id,
+  selector: 'demo-app-on-push',
+  template: '<ng-content></ng-content>',
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  encapsulation: ViewEncapsulation.None,
+})
+export class DemoAppOnPush {}
+
+@Component({
+  moduleId: module.id,
   selector: 'demo-app',
   templateUrl: 'demo-app.html',
   styleUrls: ['demo-app.css'],
+  host: {
+    '[class.unicorn-dark-theme]': 'dark',
+  },
   encapsulation: ViewEncapsulation.None,
   providers: [ PageTitleService ]
 })
+<<<<<<< HEAD
 export class DemoApp implements OnInit {
   header: string;
+=======
+export class DemoApp {
+  dark = false;
+  changeDetectionStrategy: string;
+>>>>>>> 615fa2a3fc164f1830a2f18b789856d1c8090292
   navItems = [
     {name: 'Autocomplete', route: 'autocomplete'},
     {name: 'Button', route: 'button'},
@@ -27,6 +51,8 @@ export class DemoApp implements OnInit {
     {name: 'Card', route: 'card'},
     {name: 'Chips', route: 'chips'},
     {name: 'Checkbox', route: 'checkbox'},
+    {name: 'Data Table', route: 'data-table'},
+    {name: 'Datepicker', route: 'datepicker'},
     {name: 'Dialog', route: 'dialog'},
     {name: 'Gestures', route: 'gestures'},
     {name: 'Grid List', route: 'grid-list'},
@@ -50,10 +76,21 @@ export class DemoApp implements OnInit {
     {name: 'Toolbar', route: 'toolbar'},
     {name: 'Tooltip', route: 'tooltip'},
     {name: 'Platform', route: 'platform'},
-    {name: 'Style', route: 'style'}
+    {name: 'Style', route: 'style'},
+    {name: 'Typography', route: 'typography'}
   ];
 
+<<<<<<< HEAD
   constructor(private _element: ElementRef, private pageTitleService: PageTitleService) {
+=======
+  constructor(private _element: ElementRef) {
+    // Some browsers will throw when trying to access localStorage in incognito.
+    try {
+      this.changeDetectionStrategy = window.localStorage.getItem(changeDetectionKey) || 'Default';
+    } catch (error) {
+      console.error(error);
+    }
+>>>>>>> 615fa2a3fc164f1830a2f18b789856d1c8090292
   }
   
   ngOnInit() {
@@ -73,6 +110,17 @@ export class DemoApp implements OnInit {
       elem.mozRequestFullScreen();
     } else if (elem.msRequestFullScreen) {
       elem.msRequestFullScreen();
+    }
+  }
+
+  toggleChangeDetection() {
+    try {
+      this.changeDetectionStrategy = this.changeDetectionStrategy === 'Default' ?
+          'OnPush' : 'Default';
+      window.localStorage.setItem(changeDetectionKey, this.changeDetectionStrategy);
+      window.location.reload();
+    } catch (error) {
+      console.error(error);
     }
   }
 }
