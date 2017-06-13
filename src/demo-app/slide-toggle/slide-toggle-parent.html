@@ -1,24 +1,41 @@
 <parent-wrapper>
-
     <div class="guidelines">
-        <p>On/off switches toggle the state of a single settings option. The option that the switch controls, as well as the
-            state it’s in, should be made clear from the corresponding inline label. Switches take on the same visual properties
-            of the radio button.</p>
+        <div [fxLayout]="row" fxLayoutAlign="space-around start" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="50px"
+            fxLayoutGap.sm="0px" fxLayoutGap.xs="0px">
+            <div fxFlex="33">
+                <p>On/off switches toggle the state of a single settings option. The option that the switch controls, as well
+                    as the state it’s in, should be made clear from the corresponding inline label. Switches take on the
+                    same visual properties of the radio button.</p>
 
-        <p>The on/off slide toggle with the text “on” and “off” included within the asset is deprecated. Use the switch shown
-            here instead.</p>
+                <p>The on/off slide toggle with the text “on” and “off” included within the asset is deprecated. Use the switch
+                    shown here instead.</p>
+            </div>
 
-    </div>
+            <div fxFlex="33">
+                <img src="assets/images/slidetoggle/slidetoggle1.png" width="360" />
+            </div>
 
-    <div class="screenshots">
-        <md-grid-list cols="3" rowHeight="200px">
-            <md-grid-tile *ngFor="let screenshot of screenshots">
-                <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
-                <md-grid-tile-footer>
-                    <h3 md-line>{{screenshot.name}}</h3>
-                </md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
+            <div fxFlex="fxFlex">
+                <div style="width:360px;"> </div>
+            </div>
+        </div>
+
+        <div id="spacer-no-line"></div>
+
+        <div [fxLayout]="row" fxLayoutAlign="space-around start" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="50px"
+            fxLayoutGap.sm="0px" fxLayoutGap.xs="0px">
+            <div fxFlex="33">
+                <p>Use the outer radial reaction only on form factors that favor finger touch, where interaction may obstruct
+                    the element completely. For desktop usage with a mouse, you do not need this extra indication.</p>
+            </div>
+            <div fxFlex="33">
+                <img src="assets/images/slidetoggle/slidetoggle-mobile.png" width="360" />
+            </div>
+
+            <div fxFlex="fxFlex">
+                <img src="assets/images/slidetoggle/slidetoggle-desktop.png" width="360" />
+            </div>
+        </div>
     </div>
 
     <div class="examples">

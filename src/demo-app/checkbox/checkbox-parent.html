@@ -1,21 +1,42 @@
 <parent-wrapper>
-
     <div class="guidelines">
-        <p>Checkboxes allow the user to select multiple options from a set. If you have multiple options appearing in a list,
-            you can preserve space by using checkboxes instead of on/off switches. If you have a single option, avoid using
-            a checkbox and use an on/off switch instead.</p>
+
+        <div fxLayout="row nowrap" class="colored box nopad" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="40px">
+            <div fxFlex="360px">
+                <p>Checkboxes allow the user to select multiple options from a set. If you have multiple options appearing in
+                    a list, you can preserve space by using checkboxes instead of on/off switches. If you have a single option,
+                    avoid using a checkbox and use an on/off switch instead.</p>
+                <ul>
+                    <li>A checkbox can either be a primary action or a secondary action.</li>
+                    <li>Type: primary action/state</li>
+                    <li>Desktop checkboxes should appear only on hover and focus.</li>
+                </ul>
+            </div>
+
+            <div fxFlex>
+                <img src="assets/images/checkbox/components_listcontrols_checkbox1.png" width="760" />
+                <p>The checkbox is the primary action and the state indicator for the list item.</p>
+            </div>
+        </div>
+
+        <div id="spacer-no-line"></div>
+
+        <div fxLayout="row nowrap" class="colored box nopad" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="40px">
+            <div fxFlex="360px">
+                <p>Type: secondary action</p>
+                <p>Separate target</p>
+                <p>When controlling a family of variables, consider using switches instead.</p>
+            </div>
+
+            <div fxFlex>
+                <img src="assets/images/checkbox/components_listcontrols_checkbox2.png" width="760" />
+                <p>The checkbox is the secondary action for the list item.</p>
+            </div>
+        </div>
+
+
     </div>
 
-    <div class="screenshots">
-        <md-grid-list cols="3" rowHeight="200px">
-            <md-grid-tile *ngFor="let screenshot of screenshots">
-                <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
-                <md-grid-tile-footer>
-                    <h3 md-line>{{screenshot.name}}</h3>
-                </md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
-    </div>
 
     <div class="examples">
         <md-checkbox-demo></md-checkbox-demo>

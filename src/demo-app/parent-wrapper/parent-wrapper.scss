@@ -1,8 +1,10 @@
 .space-title {
     border-top: 1px solid rgba(0,0,0,.12);
-    margin: 40px 0px 40px 0px;
+    margin: 5px 0px 40px 0px;
 }
 
-h1 {
-    font-size: 24px;
+.some-class .mat-tab-label {
+    text-align: left;
 }
+
+

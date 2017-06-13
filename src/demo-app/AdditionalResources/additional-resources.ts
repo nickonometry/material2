@@ -40,6 +40,16 @@ export class AdditionalResources {
                 this.TylerUIURL = "";
                 this.ConfluenceURL = "";
                 break;
+            case "/datepicker":
+                this.materialGuidelinesURL = "https://material.io/guidelines/components/pickers.html";
+                this.TylerUIURL = "";
+                this.ConfluenceURL = "";
+                break;
+            case "/data-table":
+                this.materialGuidelinesURL = "https://material.io/guidelines/components/data-tables.html";
+                this.TylerUIURL = "";
+                this.ConfluenceURL = "";
+                break;
             case "/radio":
                 this.materialGuidelinesURL = "https://material.io/guidelines/components/selection-controls.html#selection-controls-radio-button";
                 this.TylerUIURL = "";

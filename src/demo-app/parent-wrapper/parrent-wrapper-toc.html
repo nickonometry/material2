@@ -1,0 +1,37 @@
+<div class="demo-card-container">
+  <div fxFlex="360px">
+        <div>
+          <ul class="toc">
+            <div class="tocHeader">Contents</div>
+            <li><a href="{{currentURL}}#guidelines">Guidelines</a></li>
+            <li><a href="{{currentURL}}#specs">Specs</a></li>
+            <li><a href="{{currentURL}}#screenshots">Screenshots</a></li>
+            <li><a href="{{currentURL}}#examples">Examples</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div fxFlex="360px">
+        <additional-resources></additional-resources>
+      </div>
+    </div> 
+
+  <div id="guidelines">
+    <h2>Guidelines</h2>
+    <ng-content select=".guidelines"></ng-content>
+  </div>
+
+  <div id="spacer"></div>
+
+  <div style="width: 800px;" id="screenshots">
+    <h2>Screenshots</h2>
+    <screenshot-component [parentData]="screenshotPath" [testData]="currentURL"></screenshot-component>
+  </div>
+
+  <div id="spacer"></div>
+
+  <div id="examples">
+    <h2>Examples</h2>
+    <ng-content select=".examples"></ng-content>
+  </div>
+</div>

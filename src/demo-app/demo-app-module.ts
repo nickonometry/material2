@@ -37,9 +37,7 @@ import {PlatformDemo} from './platform/platform-demo';
 import {AutocompleteDemo} from './autocomplete/autocomplete-demo';
 import {InputDemo} from './input/input-demo';
 import {StyleDemo} from './style/style-demo';
-<<<<<<< HEAD
 import {FlexLayoutModule} from '@angular/flex-layout';
-=======
 import {DataTableDemo} from './data-table/data-table-demo';
 import {PeopleDatabase} from './data-table/people-database';
 import {DatepickerDemo} from './datepicker/datepicker-demo';
@@ -113,7 +111,7 @@ import {
   ]
 })
 export class DemoMaterialModule {}
->>>>>>> 615fa2a3fc164f1830a2f18b789856d1c8090292
+
 
 import {CardParent} from './card/card-parent';
 import {AutocompleteParent} from './autocomplete/autocomplete-parent';
@@ -146,6 +144,9 @@ import {TooltipParent} from './tooltip/tooltip-parent';
 import {AdditionalResources} from './AdditionalResources/additional-resources';
 import {MaterialScrollTop} from './material-scrolltop/material-scrolltop';
 import {ScreenshotComponent} from './screenshots/screenshots.component';
+import {DataTableParent} from './data-table/data-table-parent';
+import {DatepickerParent} from './datepicker/datepicker-parent';
+
 
 @NgModule({
   imports: [
@@ -162,9 +163,11 @@ import {ScreenshotComponent} from './screenshots/screenshots.component';
     ParentWrapper,
     AutocompleteDemo,
     AutocompleteParent,
+    DataTableParent,
     BaselineDemo,
     SlideToggleParent,
     PortalParent,
+    DatepickerParent,
     RadioParent,
     ScreenshotComponent,
     ProgressSpinnerParent,
@@ -189,12 +192,9 @@ import {ScreenshotComponent} from './screenshots/screenshots.component';
     ChipsParent,
     ChipsDemo,
     CheckboxDemo,
-<<<<<<< HEAD
     CheckboxParent,
-=======
     DataTableDemo,
     DatepickerDemo,
->>>>>>> 615fa2a3fc164f1830a2f18b789856d1c8090292
     DemoApp,
     DemoAppOnPush,
     DialogDemo,

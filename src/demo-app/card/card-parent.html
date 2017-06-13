@@ -1,12 +1,24 @@
 <parent-wrapper>
+
     <div class="guidelines">
-        <p>A card is a sheet of material that serves as an entry point to more detailed information.</p>
+        <div [fxLayout]="direction" fxLayoutAlign="start stretch" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="50px" fxLayoutGap.sm="0px"
+            fxLayoutGap.xs="0px">
+            <div fxFlex="50">
+                <p>A card is a sheet of material that serves as an entry point to more detailed information.</p>
 
-        <p>Cards may contain a photo, text, and a link about a single subject. They may display content containing elements
-            of varying size, such as photos with captions of variable length.</p>
+                <p>Cards may contain a photo, text, and a link about a single subject. They may display content containing elements
+                    of varying size, such as photos with captions of variable length.</p>
 
-        <p>A card collection is a layout of cards on the same plane.</p>
+                <p>A card collection is a layout of cards on the same plane.</p>
 
+            </div>
+
+            <div fxFlex="50">
+                <p>This is the right column over here</p>
+
+            </div>
+
+        </div>
     </div>
 
     <div class="examples">

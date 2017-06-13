@@ -1,11 +1,7 @@
-<<<<<<< HEAD
-import {Component, ViewEncapsulation, ElementRef, OnInit} from '@angular/core';
+import {Component, ViewEncapsulation, ElementRef, ChangeDetectionStrategy, OnInit} from '@angular/core';
 import { PageTitleService } from '../services/pagetitle.service';
-=======
-import {Component, ViewEncapsulation, ElementRef, ChangeDetectionStrategy} from '@angular/core';
 
 const changeDetectionKey = 'mdDemoChangeDetection';
->>>>>>> 615fa2a3fc164f1830a2f18b789856d1c8090292
 
 @Component({
   selector: 'home',
@@ -36,14 +32,10 @@ export class DemoAppOnPush {}
   encapsulation: ViewEncapsulation.None,
   providers: [ PageTitleService ]
 })
-<<<<<<< HEAD
-export class DemoApp implements OnInit {
-  header: string;
-=======
 export class DemoApp {
   dark = false;
   changeDetectionStrategy: string;
->>>>>>> 615fa2a3fc164f1830a2f18b789856d1c8090292
+  header: string;
   navItems = [
     {name: 'Autocomplete', route: 'autocomplete'},
     {name: 'Button', route: 'button'},
@@ -52,7 +44,7 @@ export class DemoApp {
     {name: 'Chips', route: 'chips'},
     {name: 'Checkbox', route: 'checkbox'},
     {name: 'Data Table', route: 'data-table'},
-    {name: 'Datepicker', route: 'datepicker'},
+    {name: 'Date Picker', route: 'datepicker'},
     {name: 'Dialog', route: 'dialog'},
     {name: 'Gestures', route: 'gestures'},
     {name: 'Grid List', route: 'grid-list'},
@@ -80,20 +72,16 @@ export class DemoApp {
     {name: 'Typography', route: 'typography'}
   ];
 
-<<<<<<< HEAD
-  constructor(private _element: ElementRef, private pageTitleService: PageTitleService) {
-=======
-  constructor(private _element: ElementRef) {
+  constructor(private _element: ElementRef,private pageTitleService: PageTitleService) {
     // Some browsers will throw when trying to access localStorage in incognito.
     try {
       this.changeDetectionStrategy = window.localStorage.getItem(changeDetectionKey) || 'Default';
     } catch (error) {
       console.error(error);
     }
->>>>>>> 615fa2a3fc164f1830a2f18b789856d1c8090292
   }
-  
-  ngOnInit() {
+
+    ngOnInit() {
 
         this.pageTitleService.title.subscribe((val: string) => {
             this.header = val;

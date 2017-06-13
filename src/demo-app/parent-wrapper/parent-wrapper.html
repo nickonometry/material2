@@ -1,9 +1,6 @@
-<div class="demo-card-container">
-
-  <div class="containerX">
-    <div [fxLayout]="direction" fxLayoutAlign="start stretch" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="50px" fxLayoutGap.sm="0px"
-      fxLayoutGap.xs="0px">
-      <div fxFlex="11">
+<div class="demo-card-container"  *ngIf="tabs == 'true';">
+  <!--<div fxLayout="row nowrap" class="colored box nopad" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="40px">
+    <div fxFlex="360px">
         <div>
           <ul class="toc">
             <div class="tocHeader">Contents</div>
@@ -15,38 +12,33 @@
         </div>
       </div>
 
-      <div fxFlex="11">
+    <div fxFlex="360px">
         <additional-resources></additional-resources>
       </div>
 
-    </div>
-  </div>
+  </div>-->
 
-  <div class="space-title"></div>
 
-  <div id="guidelines">
-    <h1>Guidelines</h1>
-    <ng-content select=".guidelines"></ng-content>
-  </div>
+  <md-tab-group dynamicHeight disableRipple class="some-class">
+    <md-tab label="Guidelines">
+      <div id="guidelines">
+        <h2>Guidelines</h2>
+        <ng-content select=".guidelines"></ng-content>
+      </div>
+    </md-tab>
+    <md-tab label="Screenshots">
+      <div style="width: 800px;" id="screenshots">
+        <h2>Screenshots</h2>
+        <screenshot-component [parentData]="screenshotPath" [testData]="currentURL"></screenshot-component>
+      </div>
+    </md-tab>
+    <md-tab label="Demos">
+      <div id="examples">
+        <h2>Examples</h2>
+        <ng-content select=".examples"></ng-content>
+      </div>
+    </md-tab>
+  </md-tab-group>
 
-  <div class="space-title"></div>
-
-  <div id="specs">
-    <h1>Specs</h1>
-    <ng-content select=".specs"></ng-content>
-  </div>
-
-  <div class="space-title"></div>
-
-  <div style="width: 800px;" id="screenshots">
-    <h1>Screenshots</h1>
-    <screenshot-component [parentData]="screenshotPath" [testData]="currentURL"></screenshot-component>
-  </div>
-
-  <div class="space-title"></div>
-
-  <div id="examples">
-    <h1>Examples</h1>
-    <ng-content select=".examples"></ng-content>
-  </div>
+  <div id="spacer"></div> 
 </div>

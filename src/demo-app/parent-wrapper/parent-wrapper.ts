@@ -13,6 +13,8 @@ import { Router, NavigationStart, RoutesRecognized } from '@angular/router';
 })
 
 export class ParentWrapper  {
+  tabs = "true";
+
   constructor(private router: Router, @Inject(DOCUMENT) private document: any) {  
         router.events.subscribe((url: any) => console.log("Parent Wrapper Component - The subscribed URL is " + router.url));      
     }

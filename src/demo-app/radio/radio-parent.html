@@ -1,21 +1,20 @@
 <parent-wrapper>
 
     <div class="guidelines">
-        <p>Radio buttons allow the user to select one option from a set. Use radio buttons for exclusive selection if you think
-            that the user needs to see all available options side-by-side.</p>
+        <div [fxLayout]="direction" fxLayoutAlign="start stretch" fxLayout.xs="column" fxLayout.sm="column" fxLayoutGap="50px" fxLayoutGap.sm="0px"
+            fxLayoutGap.xs="0px">
+            <div fxFlex="50">
+                <p>Radio buttons allow the user to select one option from a set. Use radio buttons for exclusive selection if
+                    you think that the user needs to see all available options side-by-side.</p>
 
-        <p>Otherwise, consider a dropdown, which uses less space than displaying all options.</p>
-    </div>
+                <p>Otherwise, consider a dropdown, which uses less space than displaying all options.</p>
+            </div>
 
-    <div class="screenshots">
-        <md-grid-list cols="3" rowHeight="200px">
-            <md-grid-tile *ngFor="let screenshot of screenshots">
-                <img [alt]="screenshot.name" src="https://material.angularjs.org/material2_assets/ngconf/{{screenshot.name}}.png">
-                <md-grid-tile-footer>
-                    <h3 md-line>{{screenshot.name}}</h3>
-                </md-grid-tile-footer>
-            </md-grid-tile>
-        </md-grid-list>
+            <div fxFlex="50">
+                <img src="assets/images/radio/radio1.png" width="360"/>
+            </div>
+
+        </div>
     </div>
 
     <div class="examples">
