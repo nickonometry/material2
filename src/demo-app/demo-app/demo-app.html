@@ -1,6 +1,6 @@
 <md-sidenav-container class="demo-root" fullscreen>
-  <md-sidenav #start mode="over">
-    <md-nav-list>
+  <md-sidenav #start mode="push">
+    <md-nav-list dense>
       <a *ngFor="let navItem of navItems" md-list-item (click)="start.close()" [routerLink]="[navItem.route]">
         {{navItem.name}}
       </a>
@@ -13,7 +13,7 @@
     </md-nav-list>
     <button md-button (click)="start.close()">CLOSE</button>
   </md-sidenav>
-  <div id="top" myHighlight>
+  <div id="top">
     <md-toolbar color="primary">
       <button md-icon-button (click)="start.open()">
         <md-icon class="md-24" >menu</md-icon>

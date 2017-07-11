@@ -16,7 +16,7 @@ export class ParentWrapper  {
   tabs = "true";
 
   constructor(private router: Router, @Inject(DOCUMENT) private document: any) {  
-        router.events.subscribe((url: any) => console.log("Parent Wrapper Component - The subscribed URL is " + router.url));      
+        router.events.subscribe((url: any) => console.log("Parent Wrapper Component - The subscribed URL is " + url));      
     }
     screenshotPath = "assets/images" + this.router.url.replace(/-/g, "") + '/'; 
     currentURL = this.document.location.href

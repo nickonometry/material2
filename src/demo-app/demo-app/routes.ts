@@ -66,6 +66,8 @@ import {ToolbarParent} from '../toolbar/toolbar-parent';
 import {TooltipParent} from '../tooltip/tooltip-parent';
 import {DataTableParent} from '../data-table/data-table-parent';
 import {DatepickerParent} from '../datepicker/datepicker-parent';
+import {ExpansionPanelParent} from '../expansion/expansion-demo-parent';
+
 
 export const DEMO_APP_ROUTES: Routes = [
   {path: '', component: Home},
@@ -74,6 +76,7 @@ export const DEMO_APP_ROUTES: Routes = [
   {path: 'card', component: CardParent},
   {path: 'chips', component: ChipsParent},
   {path: 'radio', component: RadioParent},
+  {path: 'expansion', component: ExpansionPanelParent},
   {path: 'select', component: SelectParent},
   {path: 'data-table', component: DataTableParent},
   {path: 'datepicker', component: DatepickerParent},
@@ -103,5 +106,4 @@ export const DEMO_APP_ROUTES: Routes = [
   {path: 'platform', component: PlatformDemo},
   {path: 'style', component: StyleDemo},
   {path: 'typography', component: TypographyDemo},
-  {path: 'expansion', component: ExpansionDemo},
 ];

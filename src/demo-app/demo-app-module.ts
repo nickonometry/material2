@@ -152,7 +152,7 @@ import {MaterialScrollTop} from './material-scrolltop/material-scrolltop';
 import {ScreenshotComponent} from './screenshots/screenshots.component';
 import {DataTableParent} from './data-table/data-table-parent';
 import {DatepickerParent} from './datepicker/datepicker-parent';
-
+import {ExpansionPanelParent} from './expansion/expansion-demo-parent';
 
 @NgModule({
   imports: [
@@ -196,6 +196,7 @@ import {DatepickerParent} from './datepicker/datepicker-parent';
     CardParent,
     MaterialScrollTop,
     ChipsParent,
+    ExpansionPanelParent,
     ChipsDemo,
     CheckboxDemo,
     CheckboxParent,
