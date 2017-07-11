@@ -1,12 +1,14 @@
-// TypeScript config file that is used to compile the universal-app.
+// TypeScript config file that is used to compile the Universal App. All sources are compiled
+// inside of the output folder and therefore all paths can be relative to the output folder.
 {
   "compilerOptions": {
     "declaration": true,
     "stripInternal": false,
     "experimentalDecorators": true,
+    "noUnusedParameters": true,
     "module": "commonjs",
     "moduleResolution": "node",
-    "outDir": "../../dist/packages/universal-app",
+    "outDir": ".",
     "rootDir": ".",
     "sourceMap": true,
     "target": "es2015",
@@ -23,7 +25,6 @@
     "main.ts"
   ],
   "angularCompilerOptions": {
-    "annotateForClosureCompiler": true,
-    "genDir": "../../dist/packages/universal-app"
+    "annotateForClosureCompiler": true
   }
 }

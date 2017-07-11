@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
 import {Injectable, SecurityContext, Optional, SkipSelf} from '@angular/core';
 import {SafeResourceUrl, DomSanitizer} from '@angular/platform-browser';
 import {Http} from '@angular/http';
@@ -19,7 +27,7 @@ import 'rxjs/add/observable/throw';
  * @docs-private
  */
 export function getMdIconNameNotFoundError(iconName: string): Error {
-  return new Error(`Unable to find icon with the name "${iconName}"`);
+  return Error(`Unable to find icon with the name "${iconName}"`);
 }
 
 
@@ -29,7 +37,7 @@ export function getMdIconNameNotFoundError(iconName: string): Error {
  * @docs-private
  */
 export function getMdIconNoHttpProviderError(): Error {
-  return new Error('Could not find Http provider for use with Angular Material icons. ' +
+  return Error('Could not find Http provider for use with Angular Material icons. ' +
                    'Please include the HttpModule from @angular/http in your app imports.');
 }
 
@@ -245,7 +253,7 @@ export class MdIconRegistry {
         .filter(iconSetConfig => !iconSetConfig.svgElement)
         .map(iconSetConfig =>
             this._loadSvgIconSetFromConfig(iconSetConfig)
-                .catch((err: any, caught: Observable<SVGElement>): Observable<SVGElement> => {
+                .catch((err: any): Observable<SVGElement> => {
                   let url =
                       this._sanitizer.sanitize(SecurityContext.RESOURCE_URL, iconSetConfig.url);
 
@@ -263,7 +271,7 @@ export class MdIconRegistry {
     // Fetch all the icon set URLs. When the requests complete, every IconSet should have a
     // cached SVG element (unless the request failed), and we can check again for the icon.
     return Observable.forkJoin(iconSetFetchRequests)
-        .map((ignoredResults: any) => {
+        .map(() => {
           const foundIcon = this._extractIconWithNameFromAnySet(name, iconSetConfigs);
           if (!foundIcon) {
             throw getMdIconNameNotFoundError(name);
@@ -367,7 +375,7 @@ export class MdIconRegistry {
     div.innerHTML = str;
     const svg = div.querySelector('svg') as SVGElement;
     if (!svg) {
-      throw new Error('<svg> tag not found');
+      throw Error('<svg> tag not found');
     }
     return svg;
   }

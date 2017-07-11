@@ -312,6 +312,16 @@ describe('MdDialog', () => {
     expect(overlayPane.style.width).toBe('200px');
   });
 
+  it('should allow setting the layout direction', () => {
+    let dialogRef = dialog.open(PizzaMsg, { direction: 'rtl' });
+
+    viewContainerFixture.detectChanges();
+
+    let overlayPane = overlayContainerElement.querySelector('.cdk-overlay-pane');
+
+    expect(overlayPane.getAttribute('dir')).toBe('rtl');
+  });
+
   it('should close all of the dialogs', async(() => {
     dialog.open(PizzaMsg);
     dialog.open(PizzaMsg);
@@ -365,6 +375,18 @@ describe('MdDialog', () => {
     viewContainerFixture.whenStable().then(() => {
       expect(overlayContainerElement.querySelectorAll('md-dialog-container').length).toBe(0);
     });
+  }));
+
+  it('should have the componentInstance available in the afterClosed callback', fakeAsync(() => {
+    let dialogRef = dialog.open(PizzaMsg);
+
+    dialogRef.afterClosed().subscribe(() => {
+      expect(dialogRef.componentInstance).toBeTruthy('Expected component instance to be defined.');
+    });
+
+    dialogRef.close();
+    tick(500);
+    viewContainerFixture.detectChanges();
   }));
 
   describe('passing in data', () => {
@@ -429,6 +451,28 @@ describe('MdDialog', () => {
 
       expect(overlayContainerElement.querySelector('md-dialog-container')).toBeTruthy();
     });
+
+    it('should allow for the disableClose option to be updated while open', async(() => {
+      let dialogRef = dialog.open(PizzaMsg, {
+        disableClose: true,
+        viewContainerRef: testViewContainerRef
+      });
+
+      viewContainerFixture.detectChanges();
+
+      let backdrop = overlayContainerElement.querySelector('.cdk-overlay-backdrop') as HTMLElement;
+      backdrop.click();
+
+      expect(overlayContainerElement.querySelector('md-dialog-container')).toBeTruthy();
+
+      dialogRef.disableClose = false;
+      backdrop.click();
+
+      viewContainerFixture.detectChanges();
+      viewContainerFixture.whenStable().then(() => {
+        expect(overlayContainerElement.querySelector('md-dialog-container')).toBeFalsy();
+      });
+    }));
   });
 
   describe('hasBackdrop option', () => {

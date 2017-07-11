@@ -42,6 +42,7 @@ import {DataTableDemo} from './data-table/data-table-demo';
 import {PeopleDatabase} from './data-table/people-database';
 import {DatepickerDemo} from './datepicker/datepicker-demo';
 import {TypographyDemo} from './typography/typography-demo';
+import {ExpansionDemo} from './expansion/expansion-demo';
 import {
   CdkDataTableModule,
   FullscreenOverlayContainer,
@@ -54,6 +55,7 @@ import {
   MdCoreModule,
   MdDatepickerModule,
   MdDialogModule,
+  MdExpansionModule,
   MdGridListModule,
   MdIconModule,
   MdInputModule,
@@ -72,8 +74,10 @@ import {
   MdTabsModule,
   MdToolbarModule,
   MdTooltipModule,
-  OverlayContainer
+  OverlayContainer,
+  StyleModule
 } from '@angular/material';
+import {TableHeaderDemo} from './data-table/table-header-demo';
 
 /**
  * NgModule that includes all Material modules that are required to serve the demo-app.
@@ -88,6 +92,7 @@ import {
     MdChipsModule,
     MdDatepickerModule,
     MdDialogModule,
+    MdExpansionModule,
     MdGridListModule,
     MdIconModule,
     MdInputModule,
@@ -108,6 +113,7 @@ import {
     MdTooltipModule,
     MdNativeDateModule,
     CdkDataTableModule,
+    StyleModule
   ]
 })
 export class DemoMaterialModule {}
@@ -232,6 +238,7 @@ import {DatepickerParent} from './datepicker/datepicker-parent';
     SlideToggleDemo,
     SpagettiPanel,
     StyleDemo,
+    TableHeaderDemo,
     ToolbarDemo,
     TooltipDemo,
     TabsDemo,
@@ -240,6 +247,7 @@ import {DatepickerParent} from './datepicker/datepicker-parent';
     FoggyTabContent,
     PlatformDemo,
     TypographyDemo,
+    ExpansionDemo,
   ],
   providers: [
     {provide: OverlayContainer, useClass: FullscreenOverlayContainer},

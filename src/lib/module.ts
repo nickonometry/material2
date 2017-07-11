@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
 import {NgModule} from '@angular/core';
 
 import {
@@ -37,6 +45,7 @@ import {MdAutocompleteModule} from './autocomplete/index';
 import {StyleModule} from './core/style/index';
 import {MdDatepickerModule} from './datepicker/index';
 import {CdkDataTableModule} from './core/data-table/index';
+import {MdExpansionModule} from './expansion/index';
 
 const MATERIAL_MODULES = [
   MdAutocompleteModule,
@@ -47,6 +56,7 @@ const MATERIAL_MODULES = [
   MdCheckboxModule,
   MdDatepickerModule,
   MdDialogModule,
+  MdExpansionModule,
   MdGridListModule,
   MdIconModule,
   MdInputModule,

@@ -2,7 +2,6 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 import {Component, ViewChild} from '@angular/core';
 import {CdkTable} from './data-table';
 import {CollectionViewer, DataSource} from './data-source';
-import {CommonModule} from '@angular/common';
 import {Observable} from 'rxjs/Observable';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {customMatchers} from '../testing/jasmine-matchers';
@@ -13,7 +12,7 @@ describe('CdkTable', () => {
 
   let component: SimpleCdkTableApp;
   let dataSource: FakeDataSource;
-  let table: CdkTable;
+  let table: CdkTable<any>;
   let tableElement: HTMLElement;
 
   beforeEach(async(() => {
@@ -22,7 +21,7 @@ describe('CdkTable', () => {
 
     TestBed.configureTestingModule({
       imports: [CdkDataTableModule],
-      declarations: [SimpleCdkTableApp],
+      declarations: [SimpleCdkTableApp, CustomRoleCdkTableApp],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SimpleCdkTableApp);
@@ -85,6 +84,13 @@ describe('CdkTable', () => {
     });
   });
 
+  it('should not clobber an existing table role', () => {
+    fixture = TestBed.createComponent(CustomRoleCdkTableApp);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('cdk-table')).toBeRole('treegrid');
+  });
+
   it('should re-render the rows when the data changes', () => {
     dataSource.addData();
     fixture.detectChanges();
@@ -99,24 +105,90 @@ describe('CdkTable', () => {
 
   // TODO(andrewseguin): Add test for dynamic classes on header/rows
 
-  it('should match the right table content with dynamic data', () => {
-    let initialDataLength = dataSource.data.length;
-    expect(dataSource.data.length).toBe(3);
-    let headerContent = ['Column A', 'Column B', 'Column C'];
+  it('should use differ to add/remove/move rows', () => {
+    // Each row receives an attribute 'initialIndex' the element's original place
+    getRows(tableElement).forEach((row: Element, index: number) => {
+      row.setAttribute('initialIndex', index.toString());
+    });
 
-    let initialTableContent = [headerContent];
-    dataSource.data.forEach(rowData => initialTableContent.push([rowData.a, rowData.b, rowData.c]));
-    expect(tableElement).toMatchTableContent(initialTableContent);
+    // Prove that the attributes match their indicies
+    const initialRows = getRows(tableElement);
+    expect(initialRows[0].getAttribute('initialIndex')).toBe('0');
+    expect(initialRows[1].getAttribute('initialIndex')).toBe('1');
+    expect(initialRows[2].getAttribute('initialIndex')).toBe('2');
+
+    // Swap first and second data in data array
+    const copiedData = component.dataSource.data.slice();
+    const temp = copiedData[0];
+    copiedData[0] = copiedData[1];
+    copiedData[1] = temp;
+
+    // Remove the third element
+    copiedData.splice(2, 1);
+
+    // Add new data
+    component.dataSource.data = copiedData;
+    component.dataSource.addData();
+
+    // Expect that the first and second rows were swapped and that the last row is new
+    const changedRows = getRows(tableElement);
+    expect(changedRows.length).toBe(3);
+    expect(changedRows[0].getAttribute('initialIndex')).toBe('1');
+    expect(changedRows[1].getAttribute('initialIndex')).toBe('0');
+    expect(changedRows[2].getAttribute('initialIndex')).toBe(null);
+  });
+
+  it('should match the right table content with dynamic data', () => {
+    const initialDataLength = dataSource.data.length;
+    expect(dataSource.data.length).toBe(3);
+
+    let data = dataSource.data;
+    expect(tableElement).toMatchTableContent([
+      ['Column A', 'Column B', 'Column C'],
+      [data[0].a, data[0].b, data[0].c],
+      [data[1].a, data[1].b, data[1].c],
+      [data[2].a, data[2].b, data[2].c],
+    ]);
 
     // Add data to the table and recreate what the rendered output should be.
     dataSource.addData();
     expect(dataSource.data.length).toBe(initialDataLength + 1); // Make sure data was added
-    fixture.detectChanges();
+
+    data = dataSource.data;
+    expect(tableElement).toMatchTableContent([
+      ['Column A', 'Column B', 'Column C'],
+      [data[0].a, data[0].b, data[0].c],
+      [data[1].a, data[1].b, data[1].c],
+      [data[2].a, data[2].b, data[2].c],
+      [data[3].a, data[3].b, data[3].c],
+    ]);
+  });
+
+  it('should be able to dynamically change the columns for header and rows', () => {
+    expect(dataSource.data.length).toBe(3);
+
+    let data = dataSource.data;
+    expect(tableElement).toMatchTableContent([
+      ['Column A', 'Column B', 'Column C'],
+      [data[0].a, data[0].b, data[0].c],
+      [data[1].a, data[1].b, data[1].c],
+      [data[2].a, data[2].b, data[2].c],
+    ]);
+
+    // Remove column_a and swap column_b/column_c.
+    component.columnsToRender = ['column_c', 'column_b'];
     fixture.detectChanges();
 
-    let changedTableContent = [headerContent];
-    dataSource.data.forEach(rowData => changedTableContent.push([rowData.a, rowData.b, rowData.c]));
-    expect(tableElement).toMatchTableContent(changedTableContent);
+    let changedTableContent = [['Column C', 'Column B']];
+    dataSource.data.forEach(rowData => changedTableContent.push([rowData.c, rowData.b]));
+
+    data = dataSource.data;
+    expect(tableElement).toMatchTableContent([
+      ['Column C', 'Column B'],
+      [data[0].c, data[0].b],
+      [data[1].c, data[1].b],
+      [data[2].c, data[2].b],
+    ]);
   });
 });
 
@@ -140,11 +212,8 @@ class FakeDataSource extends DataSource<TestData> {
 
   connect(collectionViewer: CollectionViewer): Observable<TestData[]> {
     this.isConnected = true;
-    const streams = [collectionViewer.viewChanged, this._dataChange];
-    return Observable.combineLatest(streams).map((results: any[]) => {
-      const [view, data] = results;
-      return data;
-    });
+    const streams = [this._dataChange, collectionViewer.viewChange];
+    return Observable.combineLatest(streams).map(([data]) => data);
   }
 
   addData() {
@@ -190,7 +259,27 @@ class SimpleCdkTableApp {
   dataSource: FakeDataSource = new FakeDataSource();
   columnsToRender = ['column_a', 'column_b', 'column_c'];
 
-  @ViewChild(CdkTable) table: CdkTable;
+  @ViewChild(CdkTable) table: CdkTable<TestData>;
+}
+
+@Component({
+  template: `
+    <cdk-table [dataSource]="dataSource" role="treegrid">
+      <ng-container cdkColumnDef="column_a">
+        <cdk-header-cell *cdkHeaderCellDef> Column A</cdk-header-cell>
+        <cdk-cell *cdkCellDef="let row"> {{row.a}}</cdk-cell>
+      </ng-container>
+
+      <cdk-header-row *cdkHeaderRowDef="columnsToRender"></cdk-header-row>
+      <cdk-row *cdkRowDef="let row; columns: columnsToRender"></cdk-row>
+    </cdk-table>
+  `
+})
+class CustomRoleCdkTableApp {
+  dataSource: FakeDataSource = new FakeDataSource();
+  columnsToRender = ['column_a'];
+
+  @ViewChild(CdkTable) table: CdkTable<TestData>;
 }
 
 function getElements(element: Element, query: string): Element[] {
@@ -213,7 +302,7 @@ function getHeaderCells(tableElement: Element): Element[] {
 }
 
 const tableCustomMatchers: jasmine.CustomMatcherFactories = {
-  toMatchTableContent: function(util, customEqualityTesters) {
+  toMatchTableContent: () => {
     return {
       compare: function (tableElement: Element, expectedTableContent: any[]) {
         const missedExpectations = [];

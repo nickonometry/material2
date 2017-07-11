@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Google Inc. All Rights Reserved.
+ *
+ * Use of this source code is governed by an MIT-style license that can be
+ * found in the LICENSE file at https://angular.io/license
+ */
+
 import {
   AfterContentInit,
   ChangeDetectionStrategy,
@@ -21,7 +29,6 @@ import {Dir} from '../core/rtl/dir';
 import {MdDialog} from '../dialog/dialog';
 import {MdDialogRef} from '../dialog/dialog-ref';
 import {PositionStrategy} from '../core/overlay/position/position-strategy';
-import {RepositionScrollStrategy, ScrollDispatcher} from '../core/overlay/index';
 import {MdDatepickerInput} from './datepicker-input';
 import {Subscription} from 'rxjs/Subscription';
 import {MdDialogConfig} from '../dialog/dialog-config';
@@ -157,7 +164,6 @@ export class MdDatepicker<D> implements OnDestroy {
               private _overlay: Overlay,
               private _ngZone: NgZone,
               private _viewContainerRef: ViewContainerRef,
-              private _scrollDispatcher: ScrollDispatcher,
               @Optional() private _dateAdapter: DateAdapter<D>,
               @Optional() private _dir: Dir) {
     if (!this._dateAdapter) {
@@ -192,7 +198,7 @@ export class MdDatepicker<D> implements OnDestroy {
    */
   _registerInput(input: MdDatepickerInput<D>): void {
     if (this._datepickerInput) {
-      throw new Error('An MdDatepicker can only be associated with a single input.');
+      throw Error('An MdDatepicker can only be associated with a single input.');
     }
     this._datepickerInput = input;
     this._inputSubscription =
@@ -205,7 +211,7 @@ export class MdDatepicker<D> implements OnDestroy {
       return;
     }
     if (!this._datepickerInput) {
-      throw new Error('Attempted to open an MdDatepicker with no associated input.');
+      throw Error('Attempted to open an MdDatepicker with no associated input.');
     }
 
     this.touchUi ? this._openAsDialog() : this._openAsPopup();
@@ -236,7 +242,7 @@ export class MdDatepicker<D> implements OnDestroy {
     config.viewContainerRef = this._viewContainerRef;
 
     this._dialogRef = this._dialog.open(MdDatepickerContent, config);
-    this._dialogRef.afterClosed().first().subscribe(() => this.close());
+    this._dialogRef.afterClosed().subscribe(() => this.close());
     this._dialogRef.componentInstance.datepicker = this;
   }
 
@@ -259,7 +265,7 @@ export class MdDatepicker<D> implements OnDestroy {
       this._ngZone.onStable.first().subscribe(() => this._popupRef.updatePosition());
     }
 
-    this._popupRef.backdropClick().first().subscribe(() => this.close());
+    this._popupRef.backdropClick().subscribe(() => this.close());
   }
 
   /** Create the popup. */
@@ -269,7 +275,7 @@ export class MdDatepicker<D> implements OnDestroy {
     overlayState.hasBackdrop = true;
     overlayState.backdropClass = 'md-overlay-transparent-backdrop';
     overlayState.direction = this._dir ? this._dir.value : 'ltr';
-    overlayState.scrollStrategy = new RepositionScrollStrategy(this._scrollDispatcher);
+    overlayState.scrollStrategy = this._overlay.scrollStrategies.reposition();
 
     this._popupRef = this._overlay.create(overlayState);
   }

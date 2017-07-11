@@ -1,4 +1,4 @@
-import {LICENSE_BANNER} from '../build-config';
+import {buildConfig} from './build-config';
 
 // There are no type definitions available for these imports.
 const rollup = require('rollup');
@@ -24,6 +24,10 @@ const ROLLUP_GLOBALS = {
   '@angular/cdk': 'ng.cdk',
 
   // Rxjs dependencies
+  'rxjs/BehaviorSubject': 'Rx',
+  'rxjs/Observable': 'Rx',
+  'rxjs/Subject': 'Rx',
+  'rxjs/Subscription': 'Rx',
   'rxjs/add/observable/combineLatest': 'Rx.Observable',
   'rxjs/add/observable/forkJoin': 'Rx.Observable',
   'rxjs/add/observable/fromEvent': 'Rx.Observable',
@@ -42,12 +46,8 @@ const ROLLUP_GLOBALS = {
   'rxjs/add/operator/share': 'Rx.Observable.prototype',
   'rxjs/add/operator/startWith': 'Rx.Observable.prototype',
   'rxjs/add/operator/switchMap': 'Rx.Observable.prototype',
+  'rxjs/add/operator/takeUntil': 'Rx.Observable.prototype',
   'rxjs/add/operator/toPromise': 'Rx.Observable.prototype',
-  'rxjs/BehaviorSubject': 'Rx',
-  'rxjs/Observable': 'Rx',
-  'rxjs/Subject': 'Rx',
-  'rxjs/Subscription': 'Rx',
-
 };
 
 export type BundleConfig = {
@@ -69,7 +69,7 @@ export function createRollupBundle(config: BundleConfig): Promise<any> {
     // Keep the moduleId empty because we don't want to force developers to a specific moduleId.
     moduleId: '',
     moduleName: config.moduleName || 'ng.material',
-    banner: LICENSE_BANNER,
+    banner: buildConfig.licenseBanner,
     format: config.format,
     dest: config.dest,
     globals: ROLLUP_GLOBALS,

@@ -143,7 +143,7 @@ describe('MdRadio', () => {
       expect(radioInstances[0].checked).toBe(false);
 
       let spies = radioInstances
-        .map((value, index) => jasmine.createSpy(`onChangeSpy ${index}`));
+        .map((radio, index) => jasmine.createSpy(`onChangeSpy ${index} for ${radio.name}`));
 
       spies.forEach((spy, index) => radioInstances[index].change.subscribe(spy));
 
@@ -331,6 +331,29 @@ describe('MdRadio', () => {
       expect(radioInstances[0].checked).toBeTruthy('expect group select the first button');
       expect(radioInstances[1].checked).toBeFalsy('should not select the second button');
       expect(radioInstances[2].checked).toBeFalsy('should not select the third button');
+    });
+
+    it('should apply class based on color attribute', () => {
+      expect(radioNativeElements.every(radioEl => radioEl.classList.contains('mat-accent')))
+        .toBe(true, 'Expected every radio element to use the accent color by default.');
+
+      testComponent.color = 'primary';
+      fixture.detectChanges();
+
+      expect(radioNativeElements.every(radioEl => radioEl.classList.contains('mat-primary')))
+        .toBe(true, 'Expected every radio element to use the primary color from the binding.');
+
+      testComponent.color = 'warn';
+      fixture.detectChanges();
+
+      expect(radioNativeElements.every(radioEl => radioEl.classList.contains('mat-warn')))
+        .toBe(true, 'Expected every radio element to use the primary color from the binding.');
+
+      testComponent.color = null;
+      fixture.detectChanges();
+
+      expect(radioNativeElements.every(radioEl => radioEl.classList.contains('mat-accent')))
+        .toBe(true, 'Expected every radio element to fallback to accent color if value is falsy.');
     });
   });
 
@@ -595,10 +618,16 @@ describe('MdRadio', () => {
                   [labelPosition]="labelPos"
                   [value]="groupValue"
                   name="test-name">
-    <md-radio-button value="fire" [disableRipple]="disableRipple"
-                     [disabled]="isFirstDisabled">Charmander</md-radio-button>
-    <md-radio-button value="water" [disableRipple]="disableRipple">Squirtle</md-radio-button>
-    <md-radio-button value="leaf" [disableRipple]="disableRipple">Bulbasaur</md-radio-button>
+    <md-radio-button value="fire" [disableRipple]="disableRipple" [disabled]="isFirstDisabled"
+                     [color]="color">
+      Charmander
+    </md-radio-button>
+    <md-radio-button value="water" [disableRipple]="disableRipple" [color]="color">
+      Squirtle
+    </md-radio-button>
+    <md-radio-button value="leaf" [disableRipple]="disableRipple" [color]="color">
+      Bulbasaur
+    </md-radio-button>
   </md-radio-group>
   `
 })
@@ -608,6 +637,7 @@ class RadiosInsideRadioGroup {
   isFirstDisabled: boolean = false;
   groupValue: string = null;
   disableRipple: boolean = false;
+  color: string;
 }
 
 

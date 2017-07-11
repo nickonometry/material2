@@ -22,7 +22,7 @@ import {
   getMdInputContainerMissingMdInputError,
   getMdInputContainerPlaceholderConflictError
 } from './input-container-errors';
-
+import {MD_PLACEHOLDER_GLOBAL_OPTIONS} from '../core/placeholder/placeholder-options';
 
 describe('MdInputContainer', function () {
   beforeEach(async(() => {
@@ -82,9 +82,32 @@ describe('MdInputContainer', function () {
         'Expected MdInputContainer to set floatingLabel to auto by default.');
   });
 
+  it('should default to global floating placeholder type', () => {
+    TestBed.resetTestingModule();
+    TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        MdInputModule,
+        NoopAnimationsModule
+      ],
+      declarations: [
+        MdInputContainerBaseTestController
+      ],
+      providers: [{ provide: MD_PLACEHOLDER_GLOBAL_OPTIONS, useValue: { float: 'always' } }]
+    });
+
+    let fixture = TestBed.createComponent(MdInputContainerBaseTestController);
+    fixture.detectChanges();
+
+    let inputContainer = fixture.debugElement.query(By.directive(MdInputContainer))
+        .componentInstance as MdInputContainer;
+    expect(inputContainer.floatPlaceholder).toBe('always',
+        'Expected MdInputContainer to set floatingLabel to always from global option.');
+  });
+
   it('should not be treated as empty if type is date',
       inject([Platform], (platform: Platform) => {
-        if (!(platform.TRIDENT || platform.FIREFOX)) {
+        if (!(platform.TRIDENT || platform.FIREFOX || (platform.SAFARI && !platform.IOS))) {
           let fixture = TestBed.createComponent(MdInputContainerDateTestController);
           fixture.detectChanges();
 
@@ -94,10 +117,10 @@ describe('MdInputContainer', function () {
         }
       }));
 
-  // Firefox and IE don't support type="date" and fallback to type="text".
+  // Firefox, Safari Desktop and IE don't support type="date" and fallback to type="text".
   it('should be treated as empty if type is date on Firefox and IE',
       inject([Platform], (platform: Platform) => {
-        if (platform.TRIDENT || platform.FIREFOX) {
+        if (platform.TRIDENT || platform.FIREFOX || (platform.SAFARI && !platform.IOS)) {
           let fixture = TestBed.createComponent(MdInputContainerDateTestController);
           fixture.detectChanges();
 

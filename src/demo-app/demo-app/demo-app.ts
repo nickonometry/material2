@@ -46,6 +46,7 @@ export class DemoApp {
     {name: 'Data Table', route: 'data-table'},
     {name: 'Date Picker', route: 'datepicker'},
     {name: 'Dialog', route: 'dialog'},
+    {name: 'Expansion Panel', route: 'expansion'},
     {name: 'Gestures', route: 'gestures'},
     {name: 'Grid List', route: 'grid-list'},
     {name: 'Icon', route: 'icon'},
